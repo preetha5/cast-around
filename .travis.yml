@@ -1,2 +1,9 @@
 language: node_js
 node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: x4KJCFbR3Kls3n4CKDRzVGtwumfKG8zHa89RJe2W/Cjuxm1u2cL1RWoEal8GsJySmfimvF4kFiMBa8LSBkQsND72Gwj2bBZhhkElYOUNe2TQCYO7dO0fbFuWOtDoLTBdm0/0fX4Vcben2dz4a6F4yHa3AfAmZjwjHakIUFvkUu45DVJoNoukvOowWtgzP4dZ+gcy5AzwnrtJ89XZAFkZT/YfhOC+95dFw2py4pCmDTQ91bezzH/FpjyQum2FQ1dJhpFt8kpsKYeU78N3zmw/S1HD0esAeoW2enJ/lsgU7F6cRKyZQPwnsadFfg5nrO+gC89yahuDd0PZthQ163vhYYItWGs16+0wEuNP31Wq1Rq0lfU0RO9hNqcuqyDmcNtgNCtYXILJKYf8O03nOk+D88Ek/f3alfYbEBHiTRk1lofdXVO5DBPZkTaZbDlZBGSa7uucAaTm/KW+LMHzMk/TBY4x5JJRSGump1F3AA6g3Ps6TT0Ri5BXY7YOumunaeSwBthhS6ivrZAgpsgPwspWtYKx8GDapbUNVaPOs9QDqZOhC7B9UZ32/lwlyWwsmd+LqIp+SKcYGVVld3iGbDoqgtxWW++50oV4DktK5miTNP63T5AyDjy7de2DYrNErOT9f3T0lm4PP/5zA7m3TilQGwywE95hCDcmzKYMzC2OjN0=
+  app: cast-around
+  on:
+    repo: preetha5/cast-around
