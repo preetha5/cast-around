@@ -2,6 +2,7 @@
 const GET_DEEP_URL = "http://www.zillow.com/webservice/GetDeepSearchResults.htm";
 const GET_UPDATED_PROP_URL = "http://www.zillow.com/webservice/GetUpdatedPropertyDetails.htm";
 
+const SEARCH_URL = "/user/search";
 let homeAddress = {};
 
 
@@ -69,6 +70,7 @@ function geolocate() {
 
 // END: Places Autocomplete feature using the Google Places API to help users fill in the information.
 
+
 var MOCK_ZILLOW_INFO = {
     "zillowInfo": [
         {
@@ -86,7 +88,7 @@ var MOCK_ZILLOW_INFO = {
         }
     ]
 }
-function displayZillowInfo(data){
+function populateForm(data){
     //Update Address in the forms
     $("#city").val(data.zillowInfo[0].address.city);
     $("#state").val(data.zillowInfo[0].address.state);
@@ -100,13 +102,24 @@ function displayZillowInfo(data){
 }
 
 //Call Zillow API to return property details
-function getDeepSearchResults(displayZillowInfo){
-    setTimeout(function(){ displayZillowInfo(MOCK_ZILLOW_INFO)}, 100);
+function getDeepSearchResults(search_address){
+    //setTimeout(function(){ displayZillowInfo(MOCK_ZILLOW_INFO)}, 100);
+
+    //Pass the search query object to the node server at endpoint at user/search
+    $.getJSON(SEARCH_URL,search_address, function(data) {
+
+      //Get the property details bacand call populateForm function
+      populateForm(data);
+  });
 }
 
 //Get and display zillow home info
 function getAndDisplayHomeInfo(){
-    getDeepSearchResults(displayZillowInfo)
+  homeAddress = {
+    address : "7434 Ashford Pl",
+    citystateZip : "SanDiego CA"
+  }
+    getDeepSearchResults(homeAddress)
 }
 //Search button event handler
 
