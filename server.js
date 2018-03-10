@@ -6,7 +6,10 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
-const {house_info} = require('./zillow');
+//const {house_info} = require('./zillow');
+
+//Call routers
+const zillowRouter = require('./zillowRouter');
 
 const app = express();
 
@@ -23,15 +26,9 @@ app.get('/', (req,res) => {
     res.sendFile(__dirname + '/public/index.html');
 });
 
-//End points for search by given address
-app.get('/user/search', (req,res) => {
-    console.log("the house details are ",req);
-    res.sendFile(__dirname + '/public/search.html');
-});
 
-app.post('/user/search', jsonParser, (req,res) => {
-    console.log("request to post is " , req);
-});
+//Get the search request from client and pass it to zillow API router
+app.use('/user/search',jsonParser, zillowRouter );
 
 //End points for the dashboard page to get list of saved homes by user
 app.get('/user/dashboard', (req,res) => {

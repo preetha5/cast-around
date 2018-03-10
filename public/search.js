@@ -89,35 +89,41 @@ var MOCK_ZILLOW_INFO = {
     ]
 }
 function populateForm(data){
+    console.log(data);
     //Update Address in the forms
-    $("#city").val(data.zillowInfo[0].address.city);
-    $("#state").val(data.zillowInfo[0].address.state);
-    $("#zip").val(data.zillowInfo[0].address.zipcode);
-    $("#streetAdd").val(data.zillowInfo[0].address.street);
+    $("#city").val(data.address[0].city);
+    $("#state").val(data.address[0].state);
+    $("#zip").val(data.address[0].zipcode);
+    $("#streetAdd").val(data.address[0].street);
 
     //Update home details returned from zillow
-    $("#beds").val(data.zillowInfo[0].bedrooms);
-    $("#baths").val(data.zillowInfo[0].bathrooms);
-    $("#built").val(data.zillowInfo[0].yearBuilt);
+    $("#beds").val(data.bedrooms);
+    $("#baths").val(data.bathrooms);
+    $("#built").val(data.yearBuilt);
 }
 
 //Call Zillow API to return property details
 function getDeepSearchResults(search_address){
-    //setTimeout(function(){ displayZillowInfo(MOCK_ZILLOW_INFO)}, 100);
-
-    //Pass the search query object to the node server at endpoint at user/search
-    $.getJSON(SEARCH_URL,search_address, function(data) {
-
-      //Get the property details bacand call populateForm function
-      populateForm(data);
+  //setTimeout(function(){ displayZillowInfo(MOCK_ZILLOW_INFO)}, 100);
+  console.log("search add is ",search_address);
+  //Pass the search query object to the node server at endpoint at user/search
+  $.ajax({
+    type: 'POST',
+    url: SEARCH_URL,
+    contentType: "application/json",
+    dataType: "json",
+    data: JSON.stringify(search_address),
+    processData: false,
+    success:populateForm
   });
+  
 }
 
 //Get and display zillow home info
 function getAndDisplayHomeInfo(){
   homeAddress = {
     address : "7434 Ashford Pl",
-    citystateZip : "SanDiego CA"
+    citystatezip : "SanDiego CA"
   }
     getDeepSearchResults(homeAddress)
 }
