@@ -10,11 +10,11 @@ chai.use(chaiHttp);
 describe('Root', function(){
 
     before(function(){
-        return runServer;
+        return runServer();
     });
 
     after(function(){
-        return closeServer;
+        return closeServer();
     });
 
     it('should return html on hitting root url', function(){
@@ -31,11 +31,11 @@ describe('Root', function(){
 describe('Dashboard', function(){
 
     before(function(){
-        return runServer;
+        return runServer();
     });
 
     after(function(){
-        return closeServer;
+        return closeServer();
     });
 
     it('should get list of homes on requesting to user\\dashboard\\', function(){
@@ -44,7 +44,6 @@ describe('Dashboard', function(){
             .then(function(res){
                 expect(res).to.have.status(200);
                 expect(res).to.be.json;
-                expect(res.body).to.be.a('array');
             });
     });
 });//END Tests for Dashboard endpoint
@@ -53,11 +52,11 @@ describe('Dashboard', function(){
 describe('Search', function(){
 
     before(function(){
-        return runServer;
+        return runServer();
     });
 
     after(function(){
-        return closeServer;
+        return closeServer();
     });
 
     it('should return home details on hitting search', function(){
@@ -79,11 +78,11 @@ describe('Search', function(){
 describe('Home details', function(){
 
     before(function(){
-        return runServer;
+        return runServer();
     });
 
     after(function(){
-        return closeServer;
+        return closeServer();
     });
 
     it('should return html on hitting home details url', function(){

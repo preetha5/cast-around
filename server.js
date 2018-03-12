@@ -57,8 +57,9 @@ app.get('/user/home_details/:id', (req,res) => {
 let server;
 
 // this function connects to our database, then starts the server
-function runServer(databaseUrl, port = PORT) {
+function runServer(databaseUrl = DATABASE_URL, port = PORT) {
     return new Promise((resolve, reject) => {
+      console.log('starting runserver..');
       mongoose.connect(databaseUrl, err => {
         if (err) {
           return reject(err);
