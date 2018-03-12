@@ -1,3 +1,5 @@
+let DASHBOARD_URL = '/user/dashboard';
+
 var MOCK_LIST_HOMES = {
     "listHomes": [
         {
@@ -33,22 +35,29 @@ var MOCK_LIST_HOMES = {
 
 function displayList(data){
 
-    for (index in data.listHomes) {
+    for (index in data.homes) {
         $('#savedHomes').append(
          `<li>
-         <h2>${data.listHomes[index].nickName} <h2>
+         <h2>${data.homes[index].nick_name} <h2>
           </li>`);
      }
 }
 
 //Call Zillow API to return property details
-function getListOfHomesFromDB(displayList){
-    setTimeout(function(){ displayList(MOCK_LIST_HOMES)}, 100);
+function getListOfHomesFromDB(){
+    console.log('Retrieving homes...')
+    //Make an ajax get request to 'usrl/dashboard
+    //on success callback Work on response to create template.
+    //setTimeout(function(){ displayList(MOCK_LIST_HOMES)}, 100);
+
+    $.getJSON(DASHBOARD_URL, function(data) {
+        displayList(data);
+    });
 }
 
 //Get and display zillow home info
 function getAndDisplayHomes(){
-    getListOfHomesFromDB(displayList)
+    getListOfHomesFromDB()
 }
 
 $(function(){

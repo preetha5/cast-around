@@ -10,11 +10,11 @@ chai.use(chaiHttp);
 describe('Root', function(){
 
     before(function(){
-        return runServer;
+        return runServer();
     });
 
     after(function(){
-        return closeServer;
+        return closeServer();
     });
 
     it('should return html on hitting root url', function(){
@@ -31,19 +31,19 @@ describe('Root', function(){
 describe('Dashboard', function(){
 
     before(function(){
-        return runServer;
+        return runServer();
     });
 
     after(function(){
-        return closeServer;
+        return closeServer();
     });
 
-    it('should return html on hitting dashboard url', function(){
+    it('should get list of homes on requesting to user\\dashboard\\', function(){
         return chai.request(app)
             .get('/user/dashboard')
             .then(function(res){
                 expect(res).to.have.status(200);
-                expect(res).to.be.html;
+                expect(res).to.be.json;
             });
     });
 });//END Tests for Dashboard endpoint
@@ -52,19 +52,24 @@ describe('Dashboard', function(){
 describe('Search', function(){
 
     before(function(){
-        return runServer;
+        return runServer();
     });
 
     after(function(){
-        return closeServer;
+        return closeServer();
     });
 
-    it('should return html on hitting search url', function(){
+    it('should return home details on hitting search', function(){
+        const newPost = {
+            address: "4580 Ohio St UNIT 17",
+            citystatezip: "SanDiego CA"
+        };
         return chai.request(app)
-            .get('/user/search')
+            .post('/user/search')
+            .send(newPost)
             .then(function(res){
                 expect(res).to.have.status(200);
-                expect(res).to.be.html;
+                expect(res).to.be.json;
             });
     });
 });//END Tests for Search endpoint
@@ -73,11 +78,11 @@ describe('Search', function(){
 describe('Home details', function(){
 
     before(function(){
-        return runServer;
+        return runServer();
     });
 
     after(function(){
-        return closeServer;
+        return closeServer();
     });
 
     it('should return html on hitting home details url', function(){

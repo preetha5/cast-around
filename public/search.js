@@ -2,6 +2,7 @@
 const GET_DEEP_URL = "http://www.zillow.com/webservice/GetDeepSearchResults.htm";
 const GET_UPDATED_PROP_URL = "http://www.zillow.com/webservice/GetUpdatedPropertyDetails.htm";
 
+const SEARCH_URL = "/user/search";
 let homeAddress = {};
 
 
@@ -13,7 +14,7 @@ var componentForm = {
   route: 'long_name',
   locality: 'long_name',
   administrative_area_level_1: 'short_name',
-  country: 'long_name',
+  //country: 'long_name',
   postal_code: 'short_name'
 };
 
@@ -33,19 +34,23 @@ function fillInAddress() {
   // Get the place details from the autocomplete object.
   var place = autocomplete.getPlace();
 
-  for (var component in componentForm) {
-    document.getElementById(component).value = '';
-    document.getElementById(component).disabled = false;
-  }
+  console.log(place);
+
+  // for (var component in componentForm) {
+  //   document.getElementById(component).value = '';
+  //   document.getElementById(component).disabled = false;
+  // }
 
   // Get each component of the address from the place details
   // and fill the corresponding field on the form.
   for (var i = 0; i < place.address_components.length; i++) {
     var addressType = place.address_components[i].types[0];
+    //console.log(addressType);
+    
     if (componentForm[addressType]) {
       var val = place.address_components[i][componentForm[addressType]];
-      document.getElementById(addressType).value = val;
-    }
+      homeAddress[addressType] = val;
+      }
   }
 }
 
@@ -69,56 +74,84 @@ function geolocate() {
 
 // END: Places Autocomplete feature using the Google Places API to help users fill in the information.
 
-var MOCK_ZILLOW_INFO = {
-    "zillowInfo": [
-        {
-            'address': {
-               'city': "SAN DIEGO",
-               "state": "CA",
-               "zipcode":"92111",
-               "street":"11111 Knots Berry Farm"
-            },
-            'bathrooms':"2.5",
-            'bedrooms':"3",
-            'finishedSqFt': "1969",
-            'yearBuilt': "1990",
-            'zpid': "16825747"
-        }
-    ]
+//If an error is returned by server show it to the user inside a div
+function handleError(err){
+  $('#showError').append(
+    `<p>Error: Server returned ${err.status}. ${err.responseText} </p>`
+  );
 }
-function displayZillowInfo(data){
+
+//Populate the form with data returned by zillow API
+function populateForm(data){
+    console.log(data);
     //Update Address in the forms
-    $("#city").val(data.zillowInfo[0].address.city);
-    $("#state").val(data.zillowInfo[0].address.state);
-    $("#zip").val(data.zillowInfo[0].address.zipcode);
-    $("#streetAdd").val(data.zillowInfo[0].address.street);
+    $("#city").val(data.address[0].city);
+    $("#state").val(data.address[0].state);
+    $("#zip").val(data.address[0].zipcode);
+    $("#streetAdd").val(data.address[0].street);
 
     //Update home details returned from zillow
-    $("#beds").val(data.zillowInfo[0].bedrooms);
-    $("#baths").val(data.zillowInfo[0].bathrooms);
-    $("#built").val(data.zillowInfo[0].yearBuilt);
+    $("#beds").val(data.bedrooms);
+    $("#baths").val(data.bathrooms);
+    $("#built").val(data.yearBuilt);
+    $('#homeType').val(data.useCode);
+    $("#sqft").val(data.finishedSqFt);
+    $("#zillowLink").append(`
+      <a target=_blank href="${data.links[0].mapthishome}">View this on Zillow</a>
+    `);
 }
 
 //Call Zillow API to return property details
-function getDeepSearchResults(displayZillowInfo){
-    setTimeout(function(){ displayZillowInfo(MOCK_ZILLOW_INFO)}, 100);
+function getDeepSearchResults(search_address){
+  //setTimeout(function(){ displayZillowInfo(MOCK_ZILLOW_INFO)}, 100);
+  console.log("search add is ",search_address);
+  //Pass the search query object to the node server at endpoint at user/search
+  $.ajax({
+    type: 'POST',
+    url: SEARCH_URL,
+    contentType: "application/json",
+    dataType: "json",
+    data: JSON.stringify(search_address),
+    processData: false,
+    success:populateForm,
+    error: handleError
+  });
+  
 }
 
 //Get and display zillow home info
 function getAndDisplayHomeInfo(){
-    getDeepSearchResults(displayZillowInfo)
+  console.log(homeAddress['unitNo']);
+  let search_address = {
+    address : `${homeAddress['street_number']} ${homeAddress['route']} ${homeAddress['unitNo']}`,
+    citystatezip : `${homeAddress['locality']} ${homeAddress['administrative_area_level_1']} ${homeAddress['postal_code']}`
+  }
+  console.log("search add is " , search_address);
+    getDeepSearchResults(search_address)
 }
 //Search button event handler
 
 function searchHandler(e){
     e.preventDefault();
+    //Append the unit number if entered to home_address object
+    let unitNo = '';
+    let unitElemVal = $('#unitNo').val();
+    if(unitElemVal !== null){
+      unitNo = unitElemVal;
+    }
+    homeAddress['unitNo'] = "Unit " + unitNo;
     getAndDisplayHomeInfo();
+    //Clear the address search fields
+    $('#unitNo').val('');
+    $('#autocomplete').val('');
+
+    //Clear the errors if already present
+    $("#showError").empty();
 }
 
 function searchListener(){
     $('#btn_searchHome').on('click', searchHandler);
 }
-
 
 $(function(){
     searchListener();
