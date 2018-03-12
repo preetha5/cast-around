@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.2",
+    "mongoose": "^5.0.9",
     "morgan": "^1.9.0",
     "node-zillow": "^1.0.1"
   },

@@ -10,24 +10,30 @@
 <body>
     <h1>Search and Add homes</h1>
     <div id="locationField">
-        <input id="autocomplete" placeholder="Enter your address"
-               onFocus="geolocate()" type="text"></input>
+            <label for="streetAddress">Street Address: 
+        <input id="autocomplete" placeholder="1234 El Camino street, San Francisco, CA, USA"
+               onFocus="geolocate()" type="text">
+        </label>
+        <label for="unitNo">Unit # (if applicable):
+        <input type="text" placeholder="20" id="unitNo" />
+        </label>
+        <button type="submit" id="btn_searchHome">Search</button> 
       </div>
       
-      <table id="address">
+      <!-- Place holder div to show errors if any -->
+      <div id="showError"></div>
+      
+      
+      <!-- <table id="address">
         <tr>
           <td class="label">Street address</td>
           <td class="slimField"><input class="field" id="street_number"
-                disabled="true"></input></td>
+                disabled="true" /></td>
           <td class="wideField" colspan="2"><input class="field" id="route"
-                disabled="true"></input></td>
+                disabled="true" /></td>
         </tr>
         <tr>
           <td class="label">City</td>
-          <!-- Note: Selection of address components in this example is typical.
-               You may need to adjust it for the locations relevant to your app. See
-               https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
-          -->
           <td class="wideField" colspan="3"><input class="field" id="locality"
                 disabled="true"></input></td>
         </tr>
@@ -44,9 +50,8 @@
           <td class="wideField" colspan="3"><input class="field"
                 id="country" disabled="true"></input></td>
         </tr>
-      </table>
-      <button type="submit" id="btn_searchHome">Search</button>
-
+      </table> -->
+      
       <form action="#" method="POST" id="showSearchForm">
           <fieldset>
             <legend>ADDRESS</legend>
@@ -65,6 +70,9 @@
           </fieldset>
           <fieldset>
               <legend>HOME DETAILS</legend>
+              <label for="homeType">Home Type:
+                      <input type="text" name="homeType" id="homeType" /> 
+              </label>
               <label for="beds">Bedrooms:
                     <input type="text" name="beds" id="beds" />
             </label>
@@ -74,6 +82,12 @@
             <label for="built">Year Built:
                     <input type="text" name="built" id="built" />
             </label>
+            <label for="area">Area(sqft)
+                    <input type="text" name="area" id = "sqft" />
+            </label>
+            <div id="zillowLink">
+                    
+            </div>
           </fieldset>
           <fieldset>
               <legend>YOUR NOTES</legend>
