@@ -38,13 +38,13 @@ describe('Dashboard', function(){
         return closeServer;
     });
 
-    it('should return html on hitting dashboard url', function(){
+    it('should get list of homes on requesting to user\\dashboard\\', function(){
         return chai.request(app)
             .get('/user/dashboard')
             .then(function(res){
                 expect(res).to.have.status(200);
                 expect(res).to.be.json;
-                expect(res.body).to.be.a('object');
+                expect(res.body).to.be.a('array');
             });
     });
 });//END Tests for Dashboard endpoint
@@ -60,12 +60,17 @@ describe('Search', function(){
         return closeServer;
     });
 
-    it('should return html on hitting search url', function(){
+    it('should return home details on hitting search', function(){
+        const newPost = {
+            address: "4580 Ohio St UNIT 17",
+            citystatezip: "SanDiego CA"
+        };
         return chai.request(app)
-            .get('/user/search')
+            .post('/user/search')
+            .send(newPost)
             .then(function(res){
                 expect(res).to.have.status(200);
-                expect(res).to.be.a('object');
+                expect(res).to.be.json;
             });
     });
 });//END Tests for Search endpoint
