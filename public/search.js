@@ -14,7 +14,7 @@ var componentForm = {
   route: 'long_name',
   locality: 'long_name',
   administrative_area_level_1: 'short_name',
-  country: 'long_name',
+  //country: 'long_name',
   postal_code: 'short_name'
 };
 
@@ -34,19 +34,23 @@ function fillInAddress() {
   // Get the place details from the autocomplete object.
   var place = autocomplete.getPlace();
 
-  for (var component in componentForm) {
-    document.getElementById(component).value = '';
-    document.getElementById(component).disabled = false;
-  }
+  console.log(place);
+
+  // for (var component in componentForm) {
+  //   document.getElementById(component).value = '';
+  //   document.getElementById(component).disabled = false;
+  // }
 
   // Get each component of the address from the place details
   // and fill the corresponding field on the form.
   for (var i = 0; i < place.address_components.length; i++) {
     var addressType = place.address_components[i].types[0];
+    //console.log(addressType);
+    
     if (componentForm[addressType]) {
       var val = place.address_components[i][componentForm[addressType]];
-      document.getElementById(addressType).value = val;
-    }
+      homeAddress[addressType] = val;
+      }
   }
 }
 
@@ -70,24 +74,14 @@ function geolocate() {
 
 // END: Places Autocomplete feature using the Google Places API to help users fill in the information.
 
-
-var MOCK_ZILLOW_INFO = {
-    "zillowInfo": [
-        {
-            'address': {
-               'city': "SAN DIEGO",
-               "state": "CA",
-               "zipcode":"92111",
-               "street":"11111 Knots Berry Farm"
-            },
-            'bathrooms':"2.5",
-            'bedrooms':"3",
-            'finishedSqFt': "1969",
-            'yearBuilt': "1990",
-            'zpid': "16825747"
-        }
-    ]
+//If an error is returned by server show it to the user inside a div
+function handleError(err){
+  $('#showError').append(
+    `<p>Error: Server returned ${err.status}. ${err.responseText} </p>`
+  );
 }
+
+//Populate the form with data returned by zillow API
 function populateForm(data){
     console.log(data);
     //Update Address in the forms
@@ -100,6 +94,11 @@ function populateForm(data){
     $("#beds").val(data.bedrooms);
     $("#baths").val(data.bathrooms);
     $("#built").val(data.yearBuilt);
+    $('#homeType').val(data.useCode);
+    $("#sqft").val(data.finishedSqFt);
+    $("#zillowLink").append(`
+      <a target=_blank href="${data.links[0].mapthishome}">View this on Zillow</a>
+    `);
 }
 
 //Call Zillow API to return property details
@@ -114,30 +113,45 @@ function getDeepSearchResults(search_address){
     dataType: "json",
     data: JSON.stringify(search_address),
     processData: false,
-    success:populateForm
+    success:populateForm,
+    error: handleError
   });
   
 }
 
 //Get and display zillow home info
 function getAndDisplayHomeInfo(){
-  homeAddress = {
-    address : "7434 Ashford Pl",
-    citystatezip : "SanDiego CA"
+  console.log(homeAddress['unitNo']);
+  let search_address = {
+    address : `${homeAddress['street_number']} ${homeAddress['route']} ${homeAddress['unitNo']}`,
+    citystatezip : `${homeAddress['locality']} ${homeAddress['administrative_area_level_1']} ${homeAddress['postal_code']}`
   }
-    getDeepSearchResults(homeAddress)
+  console.log("search add is " , search_address);
+    getDeepSearchResults(search_address)
 }
 //Search button event handler
 
 function searchHandler(e){
     e.preventDefault();
+    //Append the unit number if entered to home_address object
+    let unitNo = '';
+    let unitElemVal = $('#unitNo').val();
+    if(unitElemVal !== null){
+      unitNo = unitElemVal;
+    }
+    homeAddress['unitNo'] = "Unit " + unitNo;
     getAndDisplayHomeInfo();
+    //Clear the address search fields
+    $('#unitNo').val('');
+    $('#autocomplete').val('');
+
+    //Clear the errors if already present
+    $("#showError").empty();
 }
 
 function searchListener(){
     $('#btn_searchHome').on('click', searchHandler);
 }
-
 
 $(function(){
     searchListener();

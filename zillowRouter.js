@@ -9,23 +9,25 @@ var Zillow = require('node-zillow');
 
 var zillow = new Zillow('X1-ZWz18qqrkplhjf_7zykg');
 
-var parameters = {
-    address: "11130 Ivy Hill Dr",
-    citystatezip: "SanDiego CA 92131"
-  };
-
 //when a get request comes to root we take the params and call Get Deep search Zillow API
 let house_info = {}
 router.post('/', (req, res) =>{
     console.log('printing request going to zillow' , req.body);
     zillow.get('GetDeepSearchResults', req.body)
-    .then(function(results) {
-    console.log("results", results.response.results.result[0]);
-    return results.response.results.result[0]; 
+    .then(function(data) {
+        console.log('data is ', data.message);
+        if(data.message.code === '508'){
+            const message = `No results found for ${req.body.address}. Please verify address on zillow.`;
+            console.error(data.message.text);
+            return res.status(400).send(message);
+        }
+        console.log("results", data.response.results.result[0]);
+        //return data.response.results.result[0];
+        res.status(200).json(data.response.results.result[0]);
     })
-    .then(info => {
-        res.status(201).json(info);
-    });
+    .catch(err =>{
+        console.error('Error is  ',err);
+    })
     
 })
 //Get the property details from zillow

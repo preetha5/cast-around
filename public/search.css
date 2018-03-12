@@ -7,18 +7,15 @@
 html, body {
   height: 100%;
   margin: 0;
-  padding: 0;
+  padding: 20px;
 }
 
   #locationField, #controls {
-    position: relative;
-    width: 480px;
+    /* position: relative; */
+    width: 80%;
   }
   #autocomplete {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 99%;
+    width: 40%;
   }
   .label {
     text-align: right;
@@ -45,6 +42,6 @@ html, body {
     width: 200px;
   }
   #locationField {
-    height: 20px;
+    /* height: 20px; */
     margin-bottom: 2px;
   }
