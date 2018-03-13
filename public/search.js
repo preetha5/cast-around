@@ -3,6 +3,7 @@ const GET_DEEP_URL = "http://www.zillow.com/webservice/GetDeepSearchResults.htm"
 const GET_UPDATED_PROP_URL = "http://www.zillow.com/webservice/GetUpdatedPropertyDetails.htm";
 
 const SEARCH_URL = "/user/search";
+const SAVE_HOME_URL = "/user/home_details";
 let homeAddress = {};
 
 
@@ -88,7 +89,7 @@ function populateForm(data){
     $("#city").val(data.address[0].city);
     $("#state").val(data.address[0].state);
     $("#zip").val(data.address[0].zipcode);
-    $("#streetAdd").val(data.address[0].street);
+    $("#streetAddress").val(data.address[0].street);
 
     //Update home details returned from zillow
     $("#beds").val(data.bedrooms);
@@ -96,6 +97,7 @@ function populateForm(data){
     $("#built").val(data.yearBuilt);
     $('#homeType').val(data.useCode);
     $("#sqft").val(data.finishedSqFt);
+    $('#zillowId').val(data.zpid);
     $("#zillowLink").append(`
       <a target=_blank href="${data.links[0].mapthishome}">View this on Zillow</a>
     `);
@@ -149,11 +151,50 @@ function searchHandler(e){
     $("#showError").empty();
 }
 
-function searchListener(){
+function makeHomeObj(){
+  let formData = $("#showSearchForm").serializeArray();
+  console.log(formData);
+  let myObj ={};
+  $.each(formData, (index, item) =>{
+    myObj[item.name] = item.value;
+  });
+  console.log(myObj);
+  return myObj;
+}
+
+//On getting a success status after saving, show confirm message to user.
+function successMessage (){
+  $('body').append(`
+  <p>Item has been saved to Dashboard. Go <a href="./dashboard.html">here </a> to view list. </p>
+  `);
+}
+//A handler that listens to save to dahsboard button being clicked
+function saveSearchHandler(e){
+  e.preventDefault();
+  let formData = JSON.stringify($("#showSearchForm").serializeArray());
+  const homeObj = makeHomeObj();
+  $.ajax({
+    type: 'POST',
+    url: SAVE_HOME_URL,
+    contentType: "application/json",
+    dataType: "json",
+    data: JSON.stringify(homeObj),
+    success:successMessage,
+    error: handleError
+  });
+}
+
+//Handler that listens to search button being clicked
+function searchBtnListener(){
     $('#btn_searchHome').on('click', searchHandler);
 }
 
+function savetoDashboardListener(){
+  $('#save_search').on('click', saveSearchHandler);
+}
+
 $(function(){
-    searchListener();
+    searchBtnListener();
+    savetoDashboardListener();
 })
 

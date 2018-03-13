@@ -38,7 +38,7 @@ function displayList(data){
     for (index in data.homes) {
         $('#savedHomes').append(
          `<li>
-         <h2>${data.homes[index].nick_name} <h2>
+         <h2>${data.homes[index].streetAddress} ${data.homes[index].city} ${data.homes[index].zip}<h2>
           </li>`);
      }
 }
@@ -46,7 +46,7 @@ function displayList(data){
 //Call Zillow API to return property details
 function getListOfHomesFromDB(){
     console.log('Retrieving homes...')
-    //Make an ajax get request to 'usrl/dashboard
+    //Make an ajax get request to 'user/dashboard
     //on success callback Work on response to create template.
     //setTimeout(function(){ displayList(MOCK_LIST_HOMES)}, 100);
 

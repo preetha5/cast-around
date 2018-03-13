@@ -6,10 +6,10 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
-//const {house_info} = require('./zillow');
 
 //Call routers
-const zillowRouter = require('./zillowRouter');
+const searchRouter = require('./searchRouter');
+const homeDetailsRouter = require('./homeDetailsRouter');
 
 const app = express();
 
@@ -19,7 +19,7 @@ app.use(morgan('common'));
 //Import config data
 const {DATABASE_URL, PORT} = require('./config');
 //import the model for home
-const {HOME} = require('./models');
+const {Home} = require('./models');
 
 /* BEGIN ENDPOINTS */
 app.get('/', (req,res) => {
@@ -28,11 +28,19 @@ app.get('/', (req,res) => {
 
 
 //Get the search request from client and pass it to zillow API router
-app.use('/user/search',jsonParser, zillowRouter );
+app.use('/user/search',jsonParser, searchRouter );
+
+//Get the save to DB request from search page and pass it to home Details router
+app.use('/user/home_details',jsonParser, homeDetailsRouter);
+
+//Endpoint api to save data to MongoDB
+// app.post('/user/home_details', (req,res) =>{
+//   console.log("in server JS");
+// })
 
 //End points for the dashboard page to get list of saved homes by user
 app.get('/user/dashboard', (req,res) => {
-    HOME
+    Home
         .find()
         .then(homes=>{
             res.json({

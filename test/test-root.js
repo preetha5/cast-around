@@ -84,7 +84,7 @@ describe('Home details', function(){
     after(function(){
         return closeServer();
     });
-
+    
     it('should return html on hitting home details url', function(){
         return chai.request(app)
             .get('/user/home_details/:id')
