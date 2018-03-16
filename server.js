@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
+const path = require("path");
 
 //Call routers
 const searchRouter = require('./searchRouter');
@@ -21,6 +22,12 @@ const {DATABASE_URL, PORT} = require('./config');
 //import the model for home
 const {Home} = require('./models');
 
+//Setting up the templating engine : handlebars
+var expressHbs = require('express-handlebars');
+app.set('views', path.join(__dirname, 'views'))
+app.engine('hbs',expressHbs({extname:'hbs', defaultLayout:'main.handlebars', layoutsDir: __dirname + '/views/layouts'}));
+app.set('view engine','hbs');
+
 /* BEGIN ENDPOINTS */
 app.get('/', (req,res) => {
     res.sendFile(__dirname + '/public/index.html');
@@ -31,7 +38,7 @@ app.get('/', (req,res) => {
 app.use('/user/search',jsonParser, searchRouter );
 
 //Get the save to DB request from search page and pass it to home Details router
-app.use('/user/home_details',jsonParser, homeDetailsRouter);
+app.use('/user/home_details', homeDetailsRouter);
 
 //Endpoint api to save data to MongoDB
 // app.post('/user/home_details', (req,res) =>{

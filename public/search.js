@@ -3,7 +3,7 @@ const GET_DEEP_URL = "http://www.zillow.com/webservice/GetDeepSearchResults.htm"
 const GET_UPDATED_PROP_URL = "http://www.zillow.com/webservice/GetUpdatedPropertyDetails.htm";
 
 const SEARCH_URL = "/user/search";
-const SAVE_HOME_URL = "/user/home_details";
+const HOME_DETAILS_URL = '/user/home_details';
 let homeAddress = {};
 
 
@@ -84,7 +84,7 @@ function handleError(err){
 
 //Populate the form with data returned by zillow API
 function populateForm(data){
-    console.log(data);
+   // console.log(data);
     //Update Address in the forms
     $("#city").val(data.address[0].city);
     $("#state").val(data.address[0].state);
@@ -106,7 +106,7 @@ function populateForm(data){
 //Call Zillow API to return property details
 function getDeepSearchResults(search_address){
   //setTimeout(function(){ displayZillowInfo(MOCK_ZILLOW_INFO)}, 100);
-  console.log("search add is ",search_address);
+  //console.log("search add is ",search_address);
   //Pass the search query object to the node server at endpoint at user/search
   $.ajax({
     type: 'POST',
@@ -123,7 +123,7 @@ function getDeepSearchResults(search_address){
 
 //Get and display zillow home info
 function getAndDisplayHomeInfo(){
-  console.log(homeAddress['unitNo']);
+  //console.log(homeAddress['unitNo']);
   let search_address = {
     address : `${homeAddress['street_number']} ${homeAddress['route']} ${homeAddress['unitNo']}`,
     citystatezip : `${homeAddress['locality']} ${homeAddress['administrative_area_level_1']} ${homeAddress['postal_code']}`
@@ -158,7 +158,12 @@ function makeHomeObj(){
   $.each(formData, (index, item) =>{
     myObj[item.name] = item.value;
   });
-  console.log(myObj);
+  //Add the default fields for user notes also while creating records
+  //So we can call update and update their values later
+  myObj['offer'] = '';
+  myObj['pros'] = '';
+  myObj['cons'] = '';
+  myObj['nickName'] = '';
   return myObj;
 }
 
@@ -171,11 +176,12 @@ function successMessage (){
 //A handler that listens to save to dahsboard button being clicked
 function saveSearchHandler(e){
   e.preventDefault();
-  let formData = JSON.stringify($("#showSearchForm").serializeArray());
+  //let formData = JSON.stringify($("#showSearchForm").serializeArray());
   const homeObj = makeHomeObj();
+  console.log(homeObj);
   $.ajax({
     type: 'POST',
-    url: SAVE_HOME_URL,
+    url: HOME_DETAILS_URL,
     contentType: "application/json",
     dataType: "json",
     data: JSON.stringify(homeObj),

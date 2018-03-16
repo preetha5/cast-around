@@ -10,7 +10,11 @@
   "author": "Preetha Ramakrishnan",
   "license": "ISC",
   "dependencies": {
+    "consolidate": "^0.15.0",
+    "ejs": "^2.5.7",
     "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
+    "handlebars": "^4.0.11",
     "mongoose": "^5.0.9",
     "morgan": "^1.9.0",
     "node-zillow": "^1.0.1"

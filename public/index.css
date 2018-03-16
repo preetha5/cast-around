@@ -1,0 +1,97 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+body{
+    padding: 10px;
+    max-width: 980px;
+    font-family: 'Helvetica', sans-serif;
+}
+
+.clear				{ clear: both; }
+
+header{
+    position: relative;
+    margin: 1% 0 6%;
+}
+
+header .title{
+    display: inline-block;
+}
+
+header nav{
+    position: absolute;
+    right:10px;
+    top:0;
+}
+
+main{
+    /* grid spec */
+    display: grid;
+    grid-template-rows: 150px 150px 150px auto;
+    grid-gap: 10px;
+
+}
+.home_images{
+    border: solid 2px;
+    padding: 10px 5px;
+    width:80%;
+}
+
+.home_images:nth-child(odd) img{
+    float:left;
+    margin-right: 10px;
+}
+
+.home_images:nth-child(even) img{
+    float:right;
+    margin-left: 10px;
+}
+
+.quote{
+    margin-top: 20px;
+}
+
+/* Styles for the login modal window*/
+#fm_login{
+    display: none;
+    width: 60%;
+    background-color: #CADAE9;
+    padding: 15px;
+    border-radius: 10px;
+    position: absolute;
+    left: 20%;
+    top: 50%;
+    right: 30%;
+    }
+
+#fm_login fieldset	{ border: 0; }
+
+#fm_login label	{ width: 115px; text-align: right; float: left; margin: 0 10px 0 0; padding: 9px 0 0 0; font-size: 16px; }
+
+#fm_login input	{ 
+    width: 220px; 
+    display: block; 
+    padding: 4px; 
+    margin: 0 0 10px 0; 
+    font-size: 18px;
+    color: #3a3a3a; 
+    font-family: Georgia, serif;
+    }
+#fm_login input[type=checkbox]{ 
+    width: 20px; margin: 0; display: inline-block; 
+    }
+					  
+#fm_login .button	{ background: url(images/button-bg.png) repeat-x top center; border: 1px solid #999;
+					  -moz-border-radius: 5px; padding: 5px; color: black; font-weight: bold;
+					  -webkit-border-radius: 5px; font-size: 13px;  width: 70px; }
+#fm_login .button:hover		{ background: white; color: black; }
+
+.btn_close{
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 1.5em;
+}
+

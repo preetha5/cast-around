@@ -1,38 +1,31 @@
-//MOCK-DATA for Home Details page
-const MOCK_HOME_DETAILS = {
-    'details':[
-        {
-            "hid": 1234,
-            "nickName": "blue front door",
-            "address": "123, abc street",
-            "zipcode":92111,
-            "notes" : "erbvuynyguy u7dkufy uifii78ogvkjvuv"
-        },
-        {
-            "hid": 4567,
-            "nickName": "big front yard",
-            "address": "123, def street",
-            "zipcode":92011,
-            "notes" : "erbvuynyguy u7dkufy uifii78ogvkjvuv"
+
+function loginFormSubmit(){
+    $('#fm_login').submit((e) => {
+        
+        e.preventDefault();
+        let name  = $('#user').val();
+        let password  = $('#password').val();
+        if (!(name === "house-hunter-01" && password === "demo")){
+            $('#fm_login').append('<p>Login failed </p>');
+            return;
         }
-    ]
-};
-
-function renderHomeDetails(data){
-    for (index in data.details){
-        $('#home_details').append(
-            '<p>'+data.details[index].nickName+'</p>');
-    }
+        window.location.href = './dashboard.html';
+    });
 }
-
-function getHomeDetails(cbFn){
-    setTimeout(function(){ cbFn(MOCK_HOME_DETAILS)}, 100);
+function closeLoginModal(){
+    $('.btn_close').click( (e) =>{
+        e.preventDefault();
+        $('#fm_login').hide();
+    })
 }
-
-function showHomeDetails(cbFn){
-    getHomeDetails(renderHomeDetails);
+function openLoginModal(){
+    $('#linkLogIn').click( function(e) {
+        e.preventDefault();
+        $('#fm_login').show();
+    });
 }
-
 $(function(){
-    showHomeDetails();
+    openLoginModal();
+    closeLoginModal();
+    loginFormSubmit();
 })
