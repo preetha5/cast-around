@@ -1,47 +1,17 @@
 const DASHBOARD_URL = '/user/dashboard';
 const HOME_DETAILS_URL = '/user/home_details';
-
-var MOCK_LIST_HOMES = {
-    "listHomes": [
-        {
-            'address': {
-               'city': "SAN DIEGO",
-               "state": "CA",
-               "zipcode":"92111",
-               "street":"11111 Knots Berry Farm"
-            },
-            'bathrooms':"2.5",
-            'bedrooms':"3",
-            'finishedSqFt': "1969",
-            'yearBuilt': "1990",
-            'zpid': "16825747",
-            'nickName': "House with red door"
-        },
-        {
-            'address': {
-               'city': "SAN DIEGO",
-               "state": "CA",
-               "zipcode":"92127",
-               "street":"8419 Run Of The Knls"
-            },
-            'bathrooms':"3",
-            'bedrooms':"3",
-            'finishedSqFt': "2900",
-            'yearBuilt': "2004",
-            'zpid': "16825748",
-            'nickName': "House near golf course"
-        }
-    ]
-}
+const GOOGLE_API_KEY = 'AIzaSyD8N5rOofifOf4lKK7qLlHR7b6y8HlT_2E';
 
 function displayList(data){
-
     for (index in data.homes) {
         console.log(data.homes);
+        let imgLink = encodeURI(`https://maps.googleapis.com/maps/api/streetview?size=400x200&location=${data.homes[index].streetAddress}+${data.homes[index].city}+${data.homes[index].zip}&key=${GOOGLE_API_KEY}`);
+        console.log(imgLink);
         $('#savedHomes').append(
          `<li data-zpid = ${data.homes[index].zillowId}>
          <a href='#'>${data.homes[index].streetAddress} ${data.homes[index].city} ${data.homes[index].zip}<a>
-          </li>`);
+         <img src=${imgLink} alt="street view of the home" class="home_img" /> 
+         </li>`);
      }
 }
 
