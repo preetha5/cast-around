@@ -14,13 +14,12 @@ const app = express();
 
 //A GET endpoint to retreive a home record from the DB
 router.get('/:zid', (req,res) => {
-    console.log('inside home deatils GET ', req.params.zid);
+    //console.log('inside home details GET by zid ', req.params.zid);
     Home
         .findOne({"home_details.zillowId" : req.params.zid})
         .then(item =>{
-            console.log(item);
+            //console.log(item);
             res.status(200).json(item);
-           // res.render("home_details", {title: "Demo Handlebars"});
         })
         .catch(err =>{
             console.log(err);
@@ -79,14 +78,14 @@ router.patch('/:zid', jsonParser, (req,res) => {
             return res.status(400).send(message);
         }
     }
-//    const user_notes = {};
-//    const updateableFields = ['offer', 'pros', 'cons', 'nickName'];
-//     updateableFields.forEach(field => {
-//         if (field in req.body) {
-//         updated[field] = req.body[field];
-//         }
-//     });
-    //console.log("updated fields ", updated);
+   const user_notes = {}, updated = {};
+   const updateableFields = ['offer', 'pros', 'cons', 'nickName'];
+    updateableFields.forEach(field => {
+        if (field in req.body) {
+        updated[field] = req.body[field];
+        }
+    });
+
     Home
         .update({"home_details.zillowId" : req.params.zid},
             { $set: {user_notes:{
