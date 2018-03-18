@@ -62,10 +62,26 @@ app.get('/user/dashboard', (req,res) => {
             });
     }); //Get endpoint for dashboard page
     
+//Delete the record when DELETE request comes with zid in the path
+app.delete('/user/dashboard/:zid', (req, res) =>{
+  console.log("inside delete endpoint", req.params.zid);
+  Home
+    .findOne({"home_details.zillowId" : req.params.zid})
+    .remove()
+    .then(() =>{
+      console.log(`Deleted home record with ZID ${req.params.zid}`);
+      res.status(204).end();
+    })
+    .catch(
+      err=> {
+        console.error(err);
+        res.status(500).json({message: 'Internal server error'});
+    });
+})
 
-app.get('/user/home_details/:id', (req,res) => {
-      res.sendFile(__dirname + '/public/home_details.html');
-});
+// app.get('/user/home_details/:id', (req,res) => {
+//       res.sendFile(__dirname + '/public/home_details.html');
+// });
 
 /* END : ENDPOINTS */
 

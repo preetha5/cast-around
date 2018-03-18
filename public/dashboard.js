@@ -10,7 +10,8 @@ function displayList(data){
         $('#savedHomes').append(
          `<li data-zpid = ${data.homes[index].zillowId}>
          <a href='#'>${data.homes[index].streetAddress} ${data.homes[index].city} ${data.homes[index].zip}<a>
-         <img src=${imgLink} alt="street view of the home" class="home_img" /> 
+         <img src=${imgLink} alt="street view of the home" class="home_img" />
+         <button type="button" class="btn_deleteHome">Delete Item </button>
          </li>`);
      }
 }
@@ -39,6 +40,26 @@ function listItemListener(){
         })
     })
 }
+
+function deleteItemListener(){
+    $('#savedHomes').on('click', '.btn_deleteHome', function(event){
+        event.stopPropagation();
+        //find the associated list item
+        const liElem = $(this).closest("li");
+        const zpid = liElem.data('zpid');
+        $.ajax({
+            url: DASHBOARD_URL+'/'+zpid,
+            type: 'DELETE',
+            success: function(result) {
+                // Do something with the result
+                console.log('item deleted');
+                //Hide the elem from view
+                liElem.hide();
+            }
+        });
+    });
+}
+
 //Get and display zillow home info
 function getAndDisplayHomes(){
     getListOfHomesFromDB()
@@ -47,4 +68,5 @@ function getAndDisplayHomes(){
 $(function(){
     getAndDisplayHomes();
     listItemListener();
+    deleteItemListener();
 })
