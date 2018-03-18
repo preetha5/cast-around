@@ -3,6 +3,7 @@ const GET_DEEP_URL = "http://www.zillow.com/webservice/GetDeepSearchResults.htm"
 const GET_UPDATED_PROP_URL = "http://www.zillow.com/webservice/GetUpdatedPropertyDetails.htm";
 
 const SEARCH_URL = "/user/search";
+const HOME_DETAILS_URL = '/user/home_details';
 let homeAddress = {};
 
 
@@ -83,12 +84,12 @@ function handleError(err){
 
 //Populate the form with data returned by zillow API
 function populateForm(data){
-    console.log(data);
+   // console.log(data);
     //Update Address in the forms
     $("#city").val(data.address[0].city);
     $("#state").val(data.address[0].state);
     $("#zip").val(data.address[0].zipcode);
-    $("#streetAdd").val(data.address[0].street);
+    $("#streetAddress").val(data.address[0].street);
 
     //Update home details returned from zillow
     $("#beds").val(data.bedrooms);
@@ -96,6 +97,7 @@ function populateForm(data){
     $("#built").val(data.yearBuilt);
     $('#homeType').val(data.useCode);
     $("#sqft").val(data.finishedSqFt);
+    $('#zillowId').val(data.zpid);
     $("#zillowLink").append(`
       <a target=_blank href="${data.links[0].mapthishome}">View this on Zillow</a>
     `);
@@ -104,7 +106,7 @@ function populateForm(data){
 //Call Zillow API to return property details
 function getDeepSearchResults(search_address){
   //setTimeout(function(){ displayZillowInfo(MOCK_ZILLOW_INFO)}, 100);
-  console.log("search add is ",search_address);
+  //console.log("search add is ",search_address);
   //Pass the search query object to the node server at endpoint at user/search
   $.ajax({
     type: 'POST',
@@ -121,7 +123,7 @@ function getDeepSearchResults(search_address){
 
 //Get and display zillow home info
 function getAndDisplayHomeInfo(){
-  console.log(homeAddress['unitNo']);
+  //console.log(homeAddress['unitNo']);
   let search_address = {
     address : `${homeAddress['street_number']} ${homeAddress['route']} ${homeAddress['unitNo']}`,
     citystatezip : `${homeAddress['locality']} ${homeAddress['administrative_area_level_1']} ${homeAddress['postal_code']}`
@@ -149,11 +151,56 @@ function searchHandler(e){
     $("#showError").empty();
 }
 
-function searchListener(){
+function makeHomeObj(){
+  let formData = $("#showSearchForm").serializeArray();
+  console.log(formData);
+  let myObj ={};
+  $.each(formData, (index, item) =>{
+    myObj[item.name] = item.value;
+  });
+  //Add the default fields for user notes also while creating records
+  //So we can call update and update their values later
+  myObj['offer'] = '';
+  myObj['pros'] = '';
+  myObj['cons'] = '';
+  myObj['nickName'] = '';
+  return myObj;
+}
+
+//On getting a success status after saving, show confirm message to user.
+function successMessage (){
+  $('body').append(`
+  <p>Item has been saved to Dashboard. Go <a href="./dashboard.html">here </a> to view list. </p>
+  `);
+}
+//A handler that listens to save to dahsboard button being clicked
+function saveSearchHandler(e){
+  e.preventDefault();
+  //let formData = JSON.stringify($("#showSearchForm").serializeArray());
+  const homeObj = makeHomeObj();
+  console.log(homeObj);
+  $.ajax({
+    type: 'POST',
+    url: HOME_DETAILS_URL,
+    contentType: "application/json",
+    dataType: "json",
+    data: JSON.stringify(homeObj),
+    success:successMessage,
+    error: handleError
+  });
+}
+
+//Handler that listens to search button being clicked
+function searchBtnListener(){
     $('#btn_searchHome').on('click', searchHandler);
 }
 
+function savetoDashboardListener(){
+  $('#save_search').on('click', saveSearchHandler);
+}
+
 $(function(){
-    searchListener();
+    searchBtnListener();
+    savetoDashboardListener();
 })
 

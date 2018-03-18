@@ -12,7 +12,7 @@ var zillow = new Zillow('X1-ZWz18qqrkplhjf_7zykg');
 //when a get request comes to root we take the params and call Get Deep search Zillow API
 let house_info = {}
 router.post('/', (req, res) =>{
-    console.log('printing request going to zillow' , req.body);
+    //console.log('printing request going to zillow' , req.body);
     zillow.get('GetDeepSearchResults', req.body)
     .then(function(data) {
         console.log('data is ', data.message);

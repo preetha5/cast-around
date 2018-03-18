@@ -1,4 +1,5 @@
-let DASHBOARD_URL = '/user/dashboard';
+const DASHBOARD_URL = '/user/dashboard';
+const HOME_DETAILS_URL = '/user/home_details';
 
 var MOCK_LIST_HOMES = {
     "listHomes": [
@@ -36,9 +37,10 @@ var MOCK_LIST_HOMES = {
 function displayList(data){
 
     for (index in data.homes) {
+        console.log(data.homes);
         $('#savedHomes').append(
-         `<li>
-         <h2>${data.homes[index].nick_name} <h2>
+         `<li data-zpid = ${data.homes[index].zillowId}>
+         <a href='#'>${data.homes[index].streetAddress} ${data.homes[index].city} ${data.homes[index].zip}<a>
           </li>`);
      }
 }
@@ -46,7 +48,7 @@ function displayList(data){
 //Call Zillow API to return property details
 function getListOfHomesFromDB(){
     console.log('Retrieving homes...')
-    //Make an ajax get request to 'usrl/dashboard
+    //Make an ajax get request to 'user/dashboard
     //on success callback Work on response to create template.
     //setTimeout(function(){ displayList(MOCK_LIST_HOMES)}, 100);
 
@@ -55,6 +57,18 @@ function getListOfHomesFromDB(){
     });
 }
 
+function listItemListener(){
+    $('#savedHomes').on('click', 'li', function(){
+        const zpid = $(this).data('zpid');
+        $.getJSON(HOME_DETAILS_URL+'/'+zpid, function(data){
+            //store the object in localstorage
+            localStorage.setItem('home', JSON.stringify(data));
+
+            //redirect the user to home_details.html
+            window.location.href = "./home_details.html";
+        })
+    })
+}
 //Get and display zillow home info
 function getAndDisplayHomes(){
     getListOfHomesFromDB()
@@ -62,4 +76,5 @@ function getAndDisplayHomes(){
 
 $(function(){
     getAndDisplayHomes();
+    listItemListener();
 })

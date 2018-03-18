@@ -5,10 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cast-Around</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <p>Hello World!</p>
-    
+    <div class="container">
+        <header>
+            <div class="title">
+                <h1>Welcome to Cast-Around</h1>
+                <p>Your personal assistant to help you find that dream home.</p>
+            </div>
+            <nav>
+                <strong>Already registered? <a href="#fm_login" id="linkLogIn">Log In </a>here.</strong>
+            </nav>
+        </header>
+        <main role="main">
+            <div class="home_images">
+                <img src="\images\frontyard.jpg" alt="front yard of a big house">
+                <h2 class="quote">"The house had a beautiful front-yard, but would it fit in our budget ?"</h2>
+            </div>
+            <div class="home_images">
+                    <img src="\images\inside_home.jpg" alt="front yard of a big house">
+                    <h2 class="quote">"Nice new flooring, but needs exterior paint and kitchen needs a makeover".</h2>
+            </div>
+            <div class="home_images">
+                    <img src="\images\backyard_pool.jpg" alt="front yard of a big house">
+                    <h2 class="quote">"Beautiful pool in the backyard, very near to kids' school but high price."</h2>
+            </div>
+            <section class="intro">
+                <p>How do you remember every detail of the potential homes 
+                you have seen and not get overwhelmed? Answer is Cast-Around. An app that will help you 
+                store what you liked or didn't like about the house you have seen. Its a quick 3 step process</p>
+                <div>
+                    <h3>Step One: Make a list of home that you want to check out with zillow
+                        powered search.<h3>
+                </div>
+                <div>
+                    <h3>Step Two: Actually go and view the houses in your list either at an open house
+                            or with a realtor.</h3>
+                </div>
+                <div>
+                    <h3>Step Three: Add your notes to the houses you saw, what you liked, what you 
+                        didn't like, potential offer price that you would like to make etc.
+                    </h3>
+                </div>
+                <p>You can create organized profile of the houses you saw in your house-hunting , even
+                    by giving them nick names! It's that easy. Ready to give it a try?
+                </p>
+                <h3><a href="signUp.html">Sign Up</a></h3>
+            </section>
+        </main>
+    </div>
+
+    <!-- Login Modal Form -->
+    <form action="#" method="post" id="fm_login">
+            <button class="btn_close">X</button>
+            <fieldset>
+                <legend>Log in</legend>
+                <label for="user">User</label>
+                <input type="text"  name="user" id="user" required/>
+                <div class="clear"></div>
+                
+                <label for="password">Password</label>
+                <input type="password"  name="password" id="password" required/>
+                <div class="clear"></div>
+                
+                <!-- <label for="remember_me" style="padding: 0;">Remember me?</label>
+                <input type="checkbox" id="remember_me" style="position: relative; top: 3px; margin: 0; " name="remember_me"/>
+                <div class="clear"></div> -->
+                <br />
+                <input type="submit" style="margin: -20px 0 0 287px;" class="button" name="commit" value="Log in"/>	
+            </fieldset>
+            <p>For demo use :</p>
+            <p>User : house-hunter-01 , Password: demo</p>
+        </form>
     <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
