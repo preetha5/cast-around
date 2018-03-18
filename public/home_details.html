@@ -7,7 +7,7 @@
     <title>Home Details</title>
 </head>
 <body>
-    <h1>View Home Details</h1>
+    <h1>Home Details</h1>
     <form action="#" method="POST" id="homeDetailsForm">
             <fieldset>
               <legend>ADDRESS</legend>
@@ -35,30 +35,40 @@
               <label for="built">Year Built:
                       <input type="text" name="built" id="built" />
               </label>
+              <label for="area">Area(sqft):
+                <input type="text" name="area" id="area" />
+                </label>
+                <label for="zillowId">Zillow ID:
+                        <input type="text" name="zillowId" id = "zillowId" />
+                </label>
             </fieldset>
-            <fieldset>
+        </form>
+        <form action="" id="fm_userNotes">
+        <fieldset>
                 <legend>YOUR NOTES</legend>
                 <label for="offer">Your Offer Price:
-                      <input type="text" name="offer" id="offer" />
-              </label>
-              <label for="pros">Pros:
-                      <input type="textarea" name="pros" id="pros" />
-              </label>
-              <label for="cons">Cons:
-                      <input type="textarea" name="cons" id="cons" />
-              </label>
-              <label for="nickName">Nick Name:
-                      <input type="text" name="nickName" placeholder="House with backyard barbeque" id="nickName" />
-              </label>
-            </fieldset>
-            <button type="button" >Edit</button>
-            <button type="submit"> Save</button>
-  
+                        <input type="text" name="offer" id="offer" />
+                </label>
+                <label for="pros">Pros:
+                        <input type="textarea" name="pros" id="pros" />
+                </label>
+                <label for="cons">Cons:
+                        <input type="textarea" name="cons" id="cons" />
+                </label>
+                <label for="nickName">Nick Name:
+                        <input type="text" name="nickName" placeholder="House with backyard barbeque" id="nickName" />
+                </label>
+                </fieldset>
+                <button type="submit" id="btn_saveNotes" >Save Your Notes</button>
+                <button type="button" id="btn_goToDashboard"> Go Back to Dashboard</button>
         </form>
+        <div id="feedback">
+        </div>
     <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
     <script src="/home_details.js"></script>
 </body>
 </html>
