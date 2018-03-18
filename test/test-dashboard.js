@@ -52,27 +52,6 @@ function seedHomeData(){
       return Home.insertMany(seedData);
     }
 
-
-describe('Root path should return html', function(){
-
-    before(function(){
-        return runServer(TEST_DATABASE_URL);
-    });
-
-    after(function(){
-        return closeServer();
-    });
-
-    it('should return index page on hitting root url', function(){
-        return chai.request(app)
-            .get('/')
-            .then(function(res){
-                expect(res).to.have.status(200);
-                expect(res).to.be.html;
-            });
-    });
-}); //END tests for ROOT endpoint
-
 //Tests for the Dashboard feature
 describe('Dashboard endpoints', function(){
 
@@ -94,7 +73,9 @@ describe('Dashboard endpoints', function(){
         return closeServer();
     });
 
-    it('should get list of homes on requesting to user\\dashboard\\', function(){
+    //Test should find a record in DB by zid, delete it and make sure its deleted
+    describe('GET endpoint', function () {   
+        it('should get list of homes on requesting to user\\dashboard\\', function(){
         return chai.request(app)
             .get('/user/dashboard')
             .then(function(res){
@@ -106,35 +87,30 @@ describe('Dashboard endpoints', function(){
                 res.body.homes.forEach(function(item){
                     expect(item).to.be.a('object');
                     expect(item).to.include.keys(expectedKeys);
-                })
+                });
             });
-    });
-});//END Tests for Dashboard endpoint
-
-//Tests for the Search feature
-describe('Search', function(){
-
-    before(function(){
-        return runServer();
+        });
     });
 
-    after(function(){
-        return closeServer();
-    });
-
-    it('should return home details on hitting search', function(){
-        const newPost = {
-            address: "4580 Ohio St UNIT 17",
-            citystatezip: "SanDiego CA"
-        };
-        return chai.request(app)
-            .post('/user/search')
-            .send(newPost)
-            .then(function(res){
-                expect(res).to.have.status(200);
-                expect(res).to.be.json;
-                console.info("search result" ,res.body);
-                expect(res.body).to.include.keys(["zpid", "address", "yearBuilt"]);
+    //Test should find a record in DB by zid, delete it and make sure its deleted
+    describe('DELETE endpoint', function () {
+        it('should remove item from DB on DELETE post to user\\dashboard\\zid', function(){
+        let homeToDelete;
+        return Home
+            .findOne()
+            .then( dbHome=>{
+                console.log("trying to delete" , dbHome);
+                homeToDelete = dbHome;
+                zid = homeToDelete.home_details.zillowId;
+                console.log("trying to delete" , zid);
+                return chai.request(app)
+                    .delete(`/user/dashboard/${zid}`);
+            })
+            .then(res =>{
+                expect(res).to.have.status(204);
+                return Home.find({"home_details.zillowId" : homeToDelete.home_details.zillowId})
             });
+        });
     });
-});//END Tests for Search endpoint
+    
+});//END Tests for all Dashboard endpoint
