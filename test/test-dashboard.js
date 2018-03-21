@@ -5,9 +5,13 @@ const faker = require('faker');
 const mongoose = require('mongoose');
 const {Home} = require('../models');
 const {app, runServer, closeServer} = require('../server');
+const request = require('supertest');
 //Import config data
 const {TEST_DATABASE_URL, PORT} = require('../config');
-
+const jwt = require('jsonwebtoken');
+const { User } = require('../users');
+const { JWT_SECRET } = require('../config');
+const {createAuthToken} = require('../auth/authRouter');
 chai.use(chaiHttp);
 
 //This function is used to teardownDb
@@ -45,7 +49,8 @@ function seedHomeData(){
                 pros: faker.lorem.sentences(3,3),
                 cons: faker.lorem.sentences(3,3),
                 nickName: faker.lorem.words(4)
-            }
+            },
+            username: "exampleUser@test.com"
         });
       }
       // this will return a promise
@@ -54,15 +59,43 @@ function seedHomeData(){
 
 //Tests for the Dashboard feature
 describe('Dashboard endpoints', function(){
+    const username = 'exampleUser@test.com';
+    const password = 'examplePass';
+    const firstName = "joe";
+    const lastName = "smith";
+    let authToken;
 
     before(function(){
         return runServer(TEST_DATABASE_URL);
     });
 
+    beforeEach(function() {
+        return User.hashPassword(password).then(password =>
+          User.create({
+            username,
+            password,
+            firstName,
+            lastName
+          })
+        );
+      });
+    
+    beforeEach(function(done){
+        User.findOne()
+            .then(user =>{
+            authToken = createAuthToken(user);
+            console.log("beforeeach authtoken is :" , authToken);
+            done();
+            })
+    });
+
     beforeEach(function () {
         return seedHomeData();
       });
-    
+    afterEach(function () {
+        console.log("removing user");
+        return User.remove({});
+    });
     afterEach(function () {
     // tear down database so we ensure no state from this test
     // effects any coming after.
@@ -73,11 +106,19 @@ describe('Dashboard endpoints', function(){
         return closeServer();
     });
 
-    //Test should find a record in DB by zid, delete it and make sure its deleted
-    describe('GET endpoint', function () {   
-        it('should get list of homes on requesting to user\\dashboard\\', function(){
-        return chai.request(app)
-            .get('/user/dashboard')
+    //Test should find all homes for a given user
+    describe('GET endpoint', function () { 
+        it('should get list of homes on requesting to user\\dashboard\\:username', function(){
+        // return User.findOne()
+        // .then(user =>{
+        //     console.log(user);
+        //     const authToken = createAuthToken(user);
+        //     return(authToken);
+        // })
+        // .then(token =>{
+            return chai.request(app)
+            .get(`/user/dashboard/${username}`)
+            .set('Authorization',`bearer ${authToken}`)
             .then(function(res){
                 expect(res).to.have.status(200);
                 expect(res.body.homes).to.be.a('array');
@@ -90,27 +131,35 @@ describe('Dashboard endpoints', function(){
                 });
             });
         });
+       // });
     });
+    
 
     //Test should find a record in DB by zid, delete it and make sure its deleted
     describe('DELETE endpoint', function () {
         it('should remove item from DB on DELETE post to user\\dashboard\\zid', function(){
-        let homeToDelete;
-        return Home
-            .findOne()
+            let homeToDelete;
+            // User.findOne()
+            // .then(user =>{
+            // authToken = createAuthToken(user);
+            // console.log("authtoken is :" , authToken);
+            // })
+            // .then(() =>{
+            return Home
+                .findOne()
+            //})
             .then( dbHome=>{
                 console.log("trying to delete" , dbHome);
                 homeToDelete = dbHome;
                 zid = homeToDelete.home_details.zillowId;
-                console.log("trying to delete" , zid);
                 return chai.request(app)
-                    .delete(`/user/dashboard/${zid}`);
-            })
+                    .delete(`/user/dashboard/${zid}`)
+                    .set('Authorization',`bearer ${authToken}`)         
             .then(res =>{
                 expect(res).to.have.status(204);
                 return Home.find({"home_details.zillowId" : homeToDelete.home_details.zillowId})
             });
+            }); 
         });
-    });
-    
+    }); 
 });//END Tests for all Dashboard endpoint

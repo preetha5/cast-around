@@ -14,7 +14,7 @@ Router.post('/', jsonParser, (req, res) => {
  if (missingFields){
      return res.status(422).json({
         code: 422,
-        reason: 'ValidationError',
+        reason: 'Validation Error',
         message: 'Missing field',
         location: missingFields
      })
@@ -54,7 +54,7 @@ const sizedFields = {
       min: 1
     },
     password: {
-      min: 6,
+      min: 8,
       // bcrypt truncates after 72 characters, so let's not give the illusion
       // of security by storing extra (unused) info
       max: 72
@@ -74,7 +74,7 @@ const sizedFields = {
   if (tooSmallField || tooLargeField) {
     return res.status(422).json({
       code: 422,
-      reason: 'ValidationError',
+      reason: 'Validation Error',
       message: tooSmallField
         ? `Must be at least ${sizedFields[tooSmallField]
           .min} characters long`
@@ -96,7 +96,7 @@ const sizedFields = {
             console.info("count is", count);
             return res.status(422).json({
                 code: 422,
-                reason: 'ValidationError',
+                reason: 'Validation Error',
                 message: 'Username already taken',
                 location: 'username'
               });
@@ -115,7 +115,7 @@ const sizedFields = {
         return res.status(201).json(user.serialize());
         })
     .catch(err =>{
-        if (err.reason === 'ValidationError') {
+        if (err.reason === 'Validation Error') {
             return res.status(err.code).json(err);
           }
           res.status(500).json({code: 500, message: 'Internal server error'});
