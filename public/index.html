@@ -5,19 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cast-Around</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="title">
-                <h1>Welcome to Cast-Around</h1>
-                <p>Your personal assistant to help you find that dream home.</p>
+    <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                <a class="navbar-brand" href="#">Cast-Around</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                <li><a href="#fm_signUp" id="linkSignUp">Sign Up</a></li>
+                <li>Already registered? <a href="#fm_login" id="linkLogIn">Log In </a>here.</li>
+                </ul>
             </div>
-            <nav>
-                <strong>Already registered? <a href="#fm_login" id="linkLogIn">Log In </a>here.</strong>
             </nav>
-        </header>
+    <div class="container-fluid">
+        <div class="row">
+            <header class="col-sm-12 page-header">
+                <div class="title">
+                    <h1>Welcome to Cast-Around</h1>
+                    <p>Your personal assistant to help you find that dream home.</p>
+                </div>
+                <nav>
+                    <a href="#fm_signUp" id="linkSignUp">Sign Up </a>
+                    <strong>Already registered? <a href="#fm_login" id="linkLogIn">Log In </a>here.</strong>
+                </nav>
+            </header>
+        </div>
         <main role="main">
             <div class="home_images">
                 <img src="\images\frontyard.jpg" alt="front yard of a big house">
@@ -56,13 +72,44 @@
         </main>
     </div>
 
-    <!-- Login Modal Form -->
+    <!-- Sign Up Modal Form -->
+    <form action="#" method="post" id="fm_signUp">
+            <button class="fm_close">X</button>
+            <fieldset>
+                <legend>Sign Up</legend>
+                <label for="firstName">First Name</label>
+                <input type="text"  name="firstName" id="firstName" required/>
+                <div class="clear"></div>
+
+                <label for="lastName">Last Name</label>
+                <input type="text"  name="lastName" id="lastName" required/>
+                <div class="clear"></div>
+
+                <label for="newUser">Email</label>
+                <input type="text"  name="user" id="newUser" placeholder="joe@smith.com" required/>
+                <div class="clear"></div>
+                
+                <label for="newPass">Password</label>
+                <input type="password"  name="password" id="newPass" required/>
+                <div class="clear"></div>
+                
+                <!-- <label for="remember_me" style="padding: 0;">Remember me?</label>
+                <input type="checkbox" id="remember_me" style="position: relative; top: 3px; margin: 0; " name="remember_me"/>
+                <div class="clear"></div> -->
+                <br />
+                <input type="submit" value="signUp" id="btn_signUp"/>	
+            </fieldset>
+            <p>For demo login with :User : house-hunter-01 , Password: demo</p>
+            <div id="signupResult"></div>
+        </form>
+
+        <!-- Login Modal Form -->
     <form action="#" method="post" id="fm_login">
-            <button class="btn_close">X</button>
+            <button class="fm_close">X</button>
             <fieldset>
                 <legend>Log in</legend>
-                <label for="user">User</label>
-                <input type="text"  name="user" id="user" required/>
+                <label for="email">Email</label>
+                <input type="text"  name="email" id="email" required/>
                 <div class="clear"></div>
                 
                 <label for="password">Password</label>
@@ -75,13 +122,15 @@
                 <br />
                 <input type="submit" style="margin: -20px 0 0 287px;" class="button" name="commit" value="Log in"/>	
             </fieldset>
-            <p>For demo use :</p>
-            <p>User : house-hunter-01 , Password: demo</p>
+            <p>For demo use : User : house-hunter-01 , Password: demo</p>
+            <div id="loginResult"></div>
         </form>
     <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="./index.js"></script>
 </body>
 </html>

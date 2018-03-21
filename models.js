@@ -16,15 +16,15 @@ const homeSchema = mongoose.Schema({
         baths : {type:String},
         year_built : {type:String},
         area: {type:String},
-        zillowId: {type:Number, required:true, unique: true }
+        zillowId: {type:Number, required:true }
     },
     user_notes:{
         offer: {type:Number, default:0},
         pros: {type:String, default:''},
         cons: {type:String, default:''},
         nickName: {type:String, default:''}
-    }
-    
+    },
+    username:{ type: String, ref: 'User' } 
 });
 
 //serialize method for sending data to client
@@ -36,7 +36,7 @@ homeSchema.methods.dashboard_serialize = function(){
         state: this.address.state,
         zip: this.address.zip,
         zillowId: this.home_details.zillowId,
-        nick_name: this.user_notes.nick_name
+        nick_name: this.user_notes.nickName
     };
 }
 

@@ -5,7 +5,8 @@ const GET_UPDATED_PROP_URL = "http://www.zillow.com/webservice/GetUpdatedPropert
 const SEARCH_URL = "/user/search";
 const HOME_DETAILS_URL = '/user/home_details';
 let homeAddress = {};
-
+const token = sessionStorage.getItem("authToken");
+const currentUser = sessionStorage.getItem("user");
 
 // BEGIN: Places Autocomplete feature using the Google Places API to help users fill in the information.
 
@@ -75,8 +76,20 @@ function geolocate() {
 
 // END: Places Autocomplete feature using the Google Places API to help users fill in the information.
 
+//If user clicks on logout, destroy the local JWT and redirect to Landing page
+function logOutListener(){
+    $('#btn_logout').click(function(e){
+        e.preventDefault();
+        alert('logout');
+        localStorage.removeItem("home");
+        sessionStorage.removeItem("authToken");
+        window.location.href = "./index.html"
+    })
+}
+
 //If an error is returned by server show it to the user inside a div
 function handleError(err){
+    $('#showError').empty();
   $('#showError').append(
     `<p>Error: Server returned ${err.status}. ${err.responseText} </p>`
   );
@@ -105,9 +118,12 @@ function populateForm(data){
 
 //Call Zillow API to return property details
 function getDeepSearchResults(search_address){
-  //setTimeout(function(){ displayZillowInfo(MOCK_ZILLOW_INFO)}, 100);
-  //console.log("search add is ",search_address);
+  //Grab the JWT token from Session storage
+  console.log("storage token is ", token);
+  //headerParams = {'Authorization':`bearer ${token}`};
+  //console.log("header token is ", headerParams);
   //Pass the search query object to the node server at endpoint at user/search
+  
   $.ajax({
     type: 'POST',
     url: SEARCH_URL,
@@ -116,7 +132,8 @@ function getDeepSearchResults(search_address){
     data: JSON.stringify(search_address),
     processData: false,
     success:populateForm,
-    error: handleError
+    error: handleError,
+    beforeSend: function(xhr) { xhr.setRequestHeader('Authorization','Bearer ' + token); }
   });
   
 }
@@ -164,6 +181,7 @@ function makeHomeObj(){
   myObj['pros'] = '';
   myObj['cons'] = '';
   myObj['nickName'] = '';
+  myObj['user'] = currentUser;
   return myObj;
 }
 
@@ -176,7 +194,6 @@ function successMessage (){
 //A handler that listens to save to dahsboard button being clicked
 function saveSearchHandler(e){
   e.preventDefault();
-  //let formData = JSON.stringify($("#showSearchForm").serializeArray());
   const homeObj = makeHomeObj();
   console.log(homeObj);
   $.ajax({
@@ -186,7 +203,8 @@ function saveSearchHandler(e){
     dataType: "json",
     data: JSON.stringify(homeObj),
     success:successMessage,
-    error: handleError
+    error: handleError,
+    beforeSend: function(xhr) { xhr.setRequestHeader('Authorization','Bearer ' + token); }
   });
 }
 
@@ -202,5 +220,6 @@ function savetoDashboardListener(){
 $(function(){
     searchBtnListener();
     savetoDashboardListener();
+    logOutListener();
 })
 

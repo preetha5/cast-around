@@ -4,33 +4,32 @@
 }
 
 body{
-    padding: 10px;
-    max-width: 980px;
+    /* max-width: 980px; */
     font-family: 'Helvetica', sans-serif;
 }
 
 .clear				{ clear: both; }
 
-header{
+/* header{
     position: relative;
     margin: 1% 0 6%;
 }
 
 header .title{
     display: inline-block;
-}
+} */
 
-header nav{
+/* header nav{
     position: absolute;
     right:10px;
     top:0;
-}
+} */
 
 main{
     /* grid spec */
-    display: grid;
+    /* display: grid;
     grid-template-rows: 150px 150px 150px auto;
-    grid-gap: 10px;
+    grid-gap: 10px; */
 
 }
 .home_images{
@@ -54,7 +53,7 @@ main{
 }
 
 /* Styles for the login modal window*/
-#fm_login{
+#fm_login, #fm_signUp{
     display: none;
     width: 60%;
     background-color: #CADAE9;
@@ -88,7 +87,7 @@ main{
 					  -webkit-border-radius: 5px; font-size: 13px;  width: 70px; }
 #fm_login .button:hover		{ background: white; color: black; }
 
-.btn_close{
+.fm_close{
     position: absolute;
     right: 0;
     top: 0;
