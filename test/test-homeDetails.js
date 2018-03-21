@@ -5,6 +5,8 @@ const should = chai.should();
 const expect = chai.expect;
 const faker = require('faker');
 const {Home} = require('../models');
+const { User } = require('../users');
+const {createAuthToken} = require('../auth/authRouter');
 const {app, runServer, closeServer} = require('../server');
 
 //Import config data
@@ -56,15 +58,44 @@ function seedHomeData(){
 
 //Tests for the Dashboard feature
 describe('Home Details endpoints', function(){
+    const username = 'exampleUser@test.com';
+    const password = 'examplePass';
+    const firstName = "joe";
+    const lastName = "smith";
+    let authToken;
 
     before(function(){
         return runServer(TEST_DATABASE_URL);
+    });
+
+    beforeEach(function() {
+        return User.hashPassword(password).then(password =>
+          User.create({
+            username,
+            password,
+            firstName,
+            lastName
+          })
+        );
+      });
+    
+    beforeEach(function(done){
+        User.findOne()
+            .then(user =>{
+            authToken = createAuthToken(user);
+            console.log("beforeeach authtoken is :" , authToken);
+            done();
+            })
     });
 
     beforeEach(function () {
         return seedHomeData();
       });
     
+    afterEach(function () {
+        return User.remove({});
+    });
+
     afterEach(function () {
     // tear down database so we ensure no state from this test
     // effects any coming after.
@@ -76,7 +107,7 @@ describe('Home Details endpoints', function(){
     });
 
    //Tests for the Home details feature
-    describe('Home details', function(){
+    describe('POST to /user/home_details', function(){
     
     //Make a post request with fake data and verify the same got posted to DB
     it('should add new Home record with right details on POSTing', function(){
@@ -95,6 +126,7 @@ describe('Home Details endpoints', function(){
 
         return chai.request(app)
             .post('/user/home_details')
+            .set('Authorization',`bearer ${authToken}`)
             .send(newHome)
             .then(function(res) {
                 res.should.have.status(201);
@@ -121,7 +153,8 @@ describe('Home Details endpoints', function(){
                 home = dbHome;
                 zid = dbHome.home_details.zillowId;
                 return chai.request(app)
-                    .get(`/user/home_details/${zid}`);
+                    .get(`/user/home_details/${zid}`)
+                    .set('Authorization',`bearer ${authToken}`);
             })
             .then(res =>{
                 res.should.have.status(200);

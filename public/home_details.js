@@ -1,28 +1,16 @@
 //Globals
 const HOME_DETAILS_URL = '/user/home_details';
+const token = sessionStorage.getItem("authToken");
 
-var MOCK_HOME_INFO = {
-    "homeInfo": [
-        {
-            'address': {
-               'city': "SAN DIEGO",
-               "state": "CA",
-               "zipcode":"92111",
-               "street":"11111 Knots Berry Farm"
-            },
-            'bathrooms':"2.5",
-            'bedrooms':"3",
-            'finishedSqFt': "1969",
-            'yearBuilt': "1990",
-            'zpid': "16825747",
-            'offerPrice': "333333",
-            'pros': "Explore the history of the classic Lorem Ipsum passage \
-                 and generate your own text using any number of characters, words, sentences or paragraphs",
-            'cons':"Lorem Ipsum is not simply random text. \
-                It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. ",
-            'nickName': "House with red door"
-        }
-    ]
+//If user clicks on logout, destroy the local JWT and redirect to Landing page
+function logOutListener(){
+    $('#btn_logout').click(function(e){
+        e.preventDefault();
+        alert('logout');
+        localStorage.removeItem("home");
+        sessionStorage.removeItem("authToken");
+        window.location.href = "./index.html"
+    })
 }
 
 function displayHomeInfo(data){
@@ -39,10 +27,10 @@ function displayHomeInfo(data){
     $("#area").val(data.home_details.area);
     $('#zillowId').val(data.home_details.zillowId);
 
-    //Show user saved Info returned from the database
+    //Show user notes Info returned from the database
     $("#pros").val(data.user_notes.pros);
     $("#cons").val(data.user_notes.cons);
-    $("#nickName").val(data.user_notes.nick_name);
+    $("#nickName").val(data.user_notes.nickName);
     $("#offer").val(data.user_notes.offer);
 }
 
@@ -112,7 +100,8 @@ function saveUserNotesHandler(){
             data: JSON.stringify(userNotes),
             processData: false,
             success:successMessage,
-            error: handleError
+            error: handleError,
+            beforeSend: function(xhr) { xhr.setRequestHeader('Authorization','Bearer ' + token); }
           });
     });
 }
@@ -122,4 +111,5 @@ $(function(){
     getAndDisplayHomeInfo();
     goToDashboardHandler();
     saveUserNotesHandler();
+    logOutListener();
 })
