@@ -10,19 +10,23 @@
   "author": "Preetha Ramakrishnan",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "consolidate": "^0.15.0",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "express-handlebars": "^3.0.0",
-    "faker": "^4.1.0",
-    "handlebars": "^4.0.11",
+    "jsonwebtoken": "^8.2.0",
     "mongoose": "^5.0.9",
     "morgan": "^1.9.0",
-    "node-zillow": "^1.0.1"
+    "node-zillow": "^1.0.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
     "chai-http": "^3.0.0",
-    "mocha": "^5.0.1"
+    "mocha": "^5.0.1",
+    "faker": "^4.1.0"
   }
 }

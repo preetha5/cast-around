@@ -4,13 +4,9 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-const hbs = require('handlebars');
 const {Home} = require('./models');
 
-const app = express();
-
-
-
+//const app = express();
 
 //A GET endpoint to retreive a home record from the DB
 router.get('/:zid', (req,res) => {
@@ -29,7 +25,6 @@ router.get('/:zid', (req,res) => {
 //A POST endpoint to save home details(JSON object) from client to DB
 router.post('/', jsonParser, (req, res) =>{
     console.log('inside the home details router');
-    console.log(req.body);
     const requiredFields = ['streetAddress', 'city', 'state', 'zip', 'zillowId'];
     for (let i=0; i<requiredFields.length; i++){
         const field = requiredFields[i];
@@ -55,8 +50,8 @@ router.post('/', jsonParser, (req, res) =>{
                 year_built : req.body.built,
                 area: req.body.area,
                 zillowId: req.body.zillowId
-            }
-
+            },
+            username: req.body.user
         })
         .then(home => res.status(201).json(home))
         .catch(err =>{
