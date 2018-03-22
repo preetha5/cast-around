@@ -10,28 +10,102 @@ body{
 
 .clear				{ clear: both; }
 
-/* header{
-    position: relative;
-    margin: 1% 0 6%;
+/* Bootstrap styles override */
+.container-fluid{
+    padding: 0
 }
 
-header .title{
-    display: inline-block;
-} */
-
-/* header nav{
-    position: absolute;
-    right:10px;
-    top:0;
-} */
-
-main{
-    /* grid spec */
-    /* display: grid;
-    grid-template-rows: 150px 150px 150px auto;
-    grid-gap: 10px; */
-
+.row{
+    margin:0;
 }
+.navbar{
+ margin-bottom: 0
+}
+
+.navbar-inverse .navbar-brand {
+    color: #fcfcf9;
+}
+.navbar-inverse , footer{
+    background-color: #263b54;;
+    /* border-color: #080808; */
+    border-radius: 0;
+    padding: 20px;
+}
+/* Bootstrap slider overrides */
+.carousel-caption {
+    bottom: 10%;
+}
+
+.carousel-caption{
+    color: #263b54;
+    width: 56%;
+}
+
+.carousel-indicators li{
+    border-color: #10b2c7;
+}
+/* End bootstrap overrides */
+
+.titleName{
+    font-size: 120%;
+    font-style: italic;
+    color:#10b2c7;
+}
+
+
+/* Feature section */
+.features{
+    background-color: #263b54;
+    padding: 80px 0;
+}
+
+.feature{
+    text-align: center;
+    color: white;
+}
+
+/* End Features */
+
+/* Begin Steps section */
+.steps{
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.steps >h3{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.step{
+    background-color: #10b2c7;
+    border-radius: 10px;
+    color: white;
+    margin: 0 10px;
+    width: 30%;
+    text-align: center;
+    }
+
+/* End Steps section */
+
+/* Footer */
+footer{
+    text-align: center;
+}
+
+.socialIcons, footer h5{
+    margin-bottom: 20px;
+}
+.socialIcons a{
+    margin: 0 10px;
+}
+
+.socialIcons .fa{
+    font-size: 1em;
+    color:#10b2c7;
+}
+
+
 .home_images{
     border: solid 2px;
     padding: 10px 5px;
@@ -56,13 +130,14 @@ main{
 #fm_login, #fm_signUp{
     display: none;
     width: 60%;
-    background-color: #CADAE9;
+    background-color: #9fc4d1;
     padding: 15px;
     border-radius: 10px;
     position: absolute;
     left: 20%;
-    top: 50%;
-    right: 30%;
+    top: 30%;
+    right: 20%;
+    z-index: 20;
     }
 
 #fm_login fieldset	{ border: 0; }
