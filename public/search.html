@@ -7,24 +7,51 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
         <meta http-equiv="Expires" content="0" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/index.css">
     <link rel="stylesheet" href="/search.css">
     <title>Search Page</title>
 </head>
 <body>
-        <header>
-                <div class="title">
-                    <h1>Welcome to Cast-Around</h1>
-                    <p>Your personal assistant to help you find that dream home.</p>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="search.html">Search</a></li>
-                        <li><a href="dashboard.html">DashBoard</a></li>
-                        <li><a href="index.html" id="btn_logout">Logout</a></li>
-                    </ul>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">Cast-Around</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav mt-2 mt-lg-0 navbar-right">
+                <li class="nav-item">
+                <a class="nav-link" href="search.html" id="" data-toggle="modal" data-target="#signUpModal">Search</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="dashboard.html" id="" data-toggle="modal" data-target="#loginModal">Dashboard </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html" id="btn_logout" data-toggle="modal" data-target="#loginModal">Log Out </a>
+                    </li>
+                </ul>
+        </div>
         </nav>
-    </header>
-    <h1>Search and Add homes</h1>
+        <div class="container-fluid">
+            <hea class="row">
+                <header class="title col-sm-12">
+                    <h1>Which house are you going to look at next? </h1>
+                    <p>Search and add those homes to the dashboard.</p>
+                </header>
+
+        </div>
+        
+            <!-- <nav>
+                <ul>
+                    <li><a href="search.html">Search</a></li>
+                    <li><a href="dashboard.html">DashBoard</a></li>
+                    <li><a href="index.html" id="btn_logout">Logout</a></li>
+                </ul>
+        </nav> -->
+    </div>
     <div id="locationField">
             <label for="streetAddress">Street Address: 
         <input id="autocomplete" placeholder="1234 El Camino street, San Francisco, CA, USA"
@@ -108,26 +135,20 @@
                     
             </div>
           </fieldset>
-          <!-- <fieldset>
-              <legend>YOUR NOTES</legend>
-              <label for="offer">Your Offer Price:
-                    <input type="text" name="offer" id="offer" />
-            </label>
-            <label for="pros">Pros:
-                    <input type="textarea" name="pros" id="pros" />
-            </label>
-            <label for="cons">Cons:
-                    <input type="textarea" name="cons" id="cons" />
-            </label>
-            <label for="nickName">Nick Name:
-                    <input type="text" name="nickName" placeholder="House with backyard barbeque" id="nickName" />
-            </label>
-          </fieldset> -->
+          
           <button type="submit" id="save_search">Save to Dashboard</button>
           <button type="reset"> Clear Data</button>
 
       </form>
-      
+      <footer class="fixed-bottom">
+            <h5>CAST-AROUND</h5>
+            <div class="socialIcons">
+                <a href="" ><i class="fa fa-github"></i></a>
+                <a href="" ><i class="fa fa-linkedin"></i></a>
+                <a href="" ><i class="fa fa-globe"></i></a>
+            </div>
+            <p>Copyright &copy; 2018 | Cast-Around</p> 
+        </footer>
       <!-- Replace the value of the key parameter with your own API key. -->
       <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -135,6 +156,8 @@
             crossorigin="anonymous"></script>
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8N5rOofifOf4lKK7qLlHR7b6y8HlT_2E&libraries=places&callback=initAutocomplete"
               async defer></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
+
       <script src="/search.js"></script>
 </body>
 </html>

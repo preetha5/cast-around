@@ -1,20 +1,32 @@
 
 function signUpFailed(err){
     $("#signupResult").empty();
+    let response = err.responseText;
     $("#signupResult").append(`
-        <p>Account creation has failed.${err.reason}</p>`
+        <p>Account creation has failed.${response}</p>`
     );
+}
+
+function loginRedirect(){
+    $("#signupResult").on("click", "#loginRedirect", (evt) =>{
+        console.log("redirecting to login ..");
+        evt.preventDefault();
+        $("#signUpModal").modal('hide');
+        $("#loginModal").modal('show');
+    });
 }
 
 function signUpSucceeded(res){
     $("#signupResult").empty();
     $("#signupResult").append(
-        `<p>Congrats! Account Created. </p>`
+        `<p>Congrats! Account Created.<strong> 
+        <a href="#" class="badge badge-success" id="loginRedirect">Ready to Login? </a>
+         </p>`
     );
 }
 
 function signUpFormSubmit(){
-    $("#fm_signUp").submit((e) => {
+    $("#fm_signup").submit((e) => {
         e.preventDefault();
         let firstName = $('#firstName').val();
         let lastName = $('#lastName').val();
@@ -23,7 +35,7 @@ function signUpFormSubmit(){
         if (newPass.length <8){
             $("#signupResult").empty();
             $("#signupResult").append(`
-            <p>Passwords must be atleast 8 characters long.</p>`
+            <p style="color:maroon">Sign Up Failed:Passwords must be atleast 8 characters long.</p>`
             );
         return;
         }
@@ -52,7 +64,7 @@ function signUpFormSubmit(){
 function loginFailed(err){
     $("#loginResult").empty();
     $("#loginResult").append(`
-        <p>Account creation has failed.${err.reason}</p>`
+        <p>Login Failure. Incorrect username or password.${err.reason}</p>`
     );
 }
 
@@ -118,9 +130,10 @@ function openSignUpModal(){
 }
 
 $(function(){
-    openLoginModal();
-    closeLoginModal();
+    //openLoginModal();
+    //closeLoginModal();
     loginFormSubmit();
-    openSignUpModal();
+    //openSignUpModal();
     signUpFormSubmit();
+    loginRedirect();
 })
