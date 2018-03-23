@@ -7,24 +7,44 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/index.css">
     <title>Home Details</title>
+    <style>
+        
+    </style>
 </head>
 <body>
-        <header>
-                <div class="title">
-                    <h1>Welcome to Cast-Around</h1>
-                    <p>Your personal assistant to help you find that dream home.</p>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light">
+                <a class="navbar-brand" href="#">Cast-Around</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                </button>
+        
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                        <ul class="navbar-nav mt-2 mt-lg-0 navbar-right">
+                        <li class="nav-item">
+                        <a class="nav-link" href="./search.html">Search</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="./dashboard.html">Dashboard </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.html" id="btn_logout">Log Out </a>
+                            </li>
+                        </ul>
                 </div>
-                <nav>
-                    <ul>
-                        <li><a href="search.html">Search</a></li>
-                        <li><a href="dashboard.html">DashBoard</a></li>
-                        <li><a href="index.html" id="btn_logout">Logout</a></li>
-                    </ul>
-        </nav>
-    </header>
-    <h1>Home Details</h1>
-    <form action="#" method="POST" id="homeDetailsForm">
+                </nav>
+    <div class="container-fluid">
+    <div class="row">
+        <header class="title col-sm-12">
+            <h2>Add-View Home Details</h2>
+            <p>Add what you found about the house you saw.</p>
+        </header>
+        <div class="col-sm-12">
+        <form action="#" method="POST" id="homeDetailsForm">
             <fieldset>
               <legend>ADDRESS</legend>
               <label for="streetAdd">Street Address:
@@ -65,10 +85,10 @@
                 <label for="offer">Your Offer Price:
                         <input type="text" name="offer" id="offer" />
                 </label>
-                <label for="pros">Pros:
+                <label for="pros">What I Like:
                         <input type="textarea" name="pros" id="pros" />
                 </label>
-                <label for="cons">Cons:
+                <label for="cons">What Needs Work:
                         <input type="textarea" name="cons" id="cons" />
                 </label>
                 <label for="nickName">Nick Name:
@@ -78,13 +98,31 @@
                 <button type="submit" id="btn_saveNotes" >Save Your Notes</button>
                 <button type="button" id="btn_goToDashboard"> Go Back to Dashboard</button>
         </form>
-        <div id="feedback">
+        
+        <div class="col-sm-12" id="feedback">
         </div>
+        </div>
+        <div class="row">
+                <footer class="col-sm-12">
+                      <h5>CAST-AROUND</h5>
+                      <div class="socialIcons">
+                          <a href="" ><i class="fa fa-github"></i></a>
+                          <a href="" ><i class="fa fa-linkedin"></i></a>
+                          <a href="" ><i class="fa fa-globe"></i></a>
+                      </div>
+                      <p>Copyright &copy; 2018 | Cast-Around</p> 
+                  </footer>
+        </div>
+        </div><!-- End on container -->
+        
+        
     <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8N5rOofifOf4lKK7qLlHR7b6y8HlT_2E&libraries=places&callback=initAutocomplete"
+      async defer></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
     <script src="/home_details.js"></script>
 </body>
 </html>

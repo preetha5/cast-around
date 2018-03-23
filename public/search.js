@@ -80,7 +80,6 @@ function geolocate() {
 function logOutListener(){
     $('#btn_logout').click(function(e){
         e.preventDefault();
-        alert('logout');
         localStorage.removeItem("home");
         sessionStorage.removeItem("authToken");
         window.location.href = "./index.html"
@@ -112,17 +111,16 @@ function populateForm(data){
     $("#sqft").val(data.finishedSqFt);
     $('#zillowId').val(data.zpid);
     $("#zillowLink").append(`
-      <a target=_blank href="${data.links[0].mapthishome}">View this on Zillow</a>
+      <a target=_blank href="${data.links[0].mapthishome}">View this property on Zillow</a>
     `);
+    $('#showSearchForm').show();
 }
 
 //Call Zillow API to return property details
 function getDeepSearchResults(search_address){
   //Grab the JWT token from Session storage
-  console.log("storage token is ", token);
-  //headerParams = {'Authorization':`bearer ${token}`};
-  //console.log("header token is ", headerParams);
-  //Pass the search query object to the node server at endpoint at user/search
+  //Pass the search query object to the node 
+  //server at endpoint at user/search
   
   $.ajax({
     type: 'POST',
@@ -187,7 +185,7 @@ function makeHomeObj(){
 
 //On getting a success status after saving, show confirm message to user.
 function successMessage (){
-  $('body').append(`
+  $('#showSaveResult').append(`
   <p>Item has been saved to Dashboard. Go <a href="./dashboard.html">here </a> to view list. </p>
   `);
 }

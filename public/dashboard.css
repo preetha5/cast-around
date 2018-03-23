@@ -1,25 +1,22 @@
-*{
-    margin:0;
-    padding:0;
-}
-
-body{
-    padding: 10px;
-    max-width: 980px;
-    font-family: 'Helvetica', sans-serif;
-}
-
-.clear				{ clear: both; }
-
 header{
-    position: relative;
-    margin: 1% 0 6%;
+    margin-top: 80px;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
-header .title{
-    display: inline-block;
+#savedHomes{
+    margin-bottom: 30px;
+    text-align: center;
+}
+#savedHomes li{
+    list-style-type: none;
+    margin-bottom: 20px;
 }
 
-header nav li{
-    display: inline-block;
+#savedHomes .home_img{
+    width: 80%;
 }
+#savedHomes .home_add, #savedHomes .home_img{
+    margin-bottom: 20px;
+}
+

@@ -1,7 +1,4 @@
 
-header{
-    margin-top: 80px;
-}
 /* Always set the map height explicitly to define the size of the div
  * element that contains the map. */
 #map {
@@ -14,10 +11,7 @@ header{
   padding: 20px;
 } */
 
-  #locationField, #controls {
-    /* position: relative; */
-    width: 80%;
-  }
+ 
   #autocomplete {
     width: 40%;
   }
@@ -28,7 +22,6 @@ header{
     color: #303030;
   }
   #address {
-    border: 1px solid #000090;
     background-color: #f0f0ff;
     width: 480px;
     padding-right: 2px;
@@ -46,6 +39,63 @@ header{
     width: 200px;
   }
   #locationField {
-    /* height: 20px; */
-    margin-bottom: 2px;
+    background-color: #acb6c2;
+    padding: 14px;
+    margin: 10px auto 20px;
+    width: 90%;
   }
+
+  #locationField label{
+      display: block;
+  }
+
+  #locationField input{
+    width:100%;
+    margin-bottom: 10px;
+}
+
+input::placeholder {
+    color: grey;
+    font-style: italic;
+    font-size: .8rem;
+  }
+#btn_searchHome{
+    display: block;
+    margin: auto;
+}
+
+#showError{
+    margin-top: 10px;
+}
+#showSearchForm{
+    display: none;
+    padding: 14px;
+    margin: 10px auto 200px;
+    width: 90%;
+    border: solid 1px;
+}
+
+#showSearchForm legend{
+    text-align: center;
+}
+#showSearchForm label{
+    width: 40%;
+    text-align : right;
+}
+#showSearchForm input{
+    border: none;
+    width: 40%;
+}
+
+#showSearchForm #streetAddress{
+    width: 60%
+}
+
+#zillowLink{
+    text-align: center;
+}
+
+#save_search{
+    margin: 5px auto;
+    display: block;
+}

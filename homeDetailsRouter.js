@@ -56,6 +56,9 @@ router.post('/', jsonParser, (req, res) =>{
         .then(home => res.status(201).json(home))
         .catch(err =>{
             console.log(err);
+            if(err.code === 11000){
+                return res.status(500).json({error:"duplicate entry"});
+            }
             res.status(500).json({error: 'something went wrong'});
         });
 });

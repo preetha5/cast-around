@@ -63,8 +63,9 @@ function signUpFormSubmit(){
 
 function loginFailed(err){
     $("#loginResult").empty();
+    console.log(err);
     $("#loginResult").append(`
-        <p>Login Failure. Incorrect username or password.${err.reason}</p>`
+        <p>Login Failure. Incorrect username or password.${err.responseText}</p>`
     );
 }
 

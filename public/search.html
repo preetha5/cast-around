@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
-        <meta http-equiv="Expires" content="0" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+    <meta http-equiv="Expires" content="0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/index.css">
@@ -24,25 +24,93 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav mt-2 mt-lg-0 navbar-right">
                 <li class="nav-item">
-                <a class="nav-link" href="search.html" id="" data-toggle="modal" data-target="#signUpModal">Search</a>
+                <a class="nav-link activeLink" href="./search.html">Search</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="dashboard.html" id="" data-toggle="modal" data-target="#loginModal">Dashboard </a>
+                <a class="nav-link" href="./dashboard.html">Dashboard </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html" id="btn_logout" data-toggle="modal" data-target="#loginModal">Log Out </a>
+                    <a class="nav-link" href="./index.html" id="btn_logout">Log Out </a>
                     </li>
                 </ul>
         </div>
         </nav>
         <div class="container-fluid">
-            <hea class="row">
+            <div class="row">
                 <header class="title col-sm-12">
-                    <h1>Which house are you going to look at next? </h1>
-                    <p>Search and add those homes to the dashboard.</p>
+                    <h2>Which house are you going to look at next? </h2>
+                    <p>Search and add those properties to the dashboard.</p>
                 </header>
+            <div class="col-sm-12">
+                <div id="locationField">
+                        <label for="streetAddress">Street Address:
+                    </label>
+                    <input id="autocomplete" placeholder="1234 El Camino street, San Francisco, CA, USA"
+                            onFocus="geolocate()" type="text">
+                    <label for="unitNo">Unit # (if applicable):
+                    </label>
+                    <input type="text" id="unitNo" />
+                    <br>
+                    <button type="submit" id="btn_searchHome" class="btn btn-info">Search</button> 
+                    <div>
+                            <img src="images/Zillowlogo.png" alt="search powered by zillow">
+                    </div>
+                    <div id="showError"></div>
+                    </div>
+                   
+                      <!-- Place holder div to show errors if any -->
+                      
+            </div><!--end location field -->
+            </div> <!-- end row -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <form action="#" method="POST" id="showSearchForm">
+                        <fieldset>
+                            <legend>ADDRESS</legend>
+                            <label for="streetAddress">Street Address:</label>
+                            <input type="textarea" rows="3" cols="10" name="streetAddress" id="streetAddress" />
+                            <label for="city">City:
+                            </label>
+                            <input type="text" name="city" id="city" />
+                            <label for="state">State:
+                            </label>
+                            <input type="text" name="state" id="state" />
+                            <label for="zip">ZipCode:
+                            </label>
+                            <input type="text" name="zip" id="zip" />
+                        </fieldset>
+                        <fieldset>
+                            <legend>HOME DETAILS</legend>
+                            <label for="homeType">Home Type: 
+                            </label>
+                            <input type="text" name="homeType" id="homeType" />
+                            <label for="beds">Bedrooms:
+                            </label>
+                            <input type="text" name="beds" id="beds" />
+                            <label for="baths">Baths:
+                            </label>
+                            <input type="text" name="baths" id="baths" />
+                            <label for="built">Year Built:
+                            </label>
+                            <input type="text" name="built" id="built" />
+                            <label for="area">Area(sqft)
+                            </label>
+                            <input type="text" name="area" id = "sqft" />
+                            <label for="zillowId">Zillow ID:
+                                </label>
+                            <input type="text" name="zillowId" id = "zillowId" />
+                            <div id="zillowLink">
+                                    
+                            </div>
+                        </fieldset>
+                        
+                        <button type="submit" class="btn btn-success" id="save_search" >Save to Dashboard</button>
+                    </form>
+                    <div id="showSaveResult"></div>
+                </div>
+            </div> <!--end row -->
 
-        </div>
+        </div><!-- End container -->
         
             <!-- <nav>
                 <ul>
@@ -51,20 +119,7 @@
                     <li><a href="index.html" id="btn_logout">Logout</a></li>
                 </ul>
         </nav> -->
-    </div>
-    <div id="locationField">
-            <label for="streetAddress">Street Address: 
-        <input id="autocomplete" placeholder="1234 El Camino street, San Francisco, CA, USA"
-               onFocus="geolocate()" type="text">
-        </label>
-        <label for="unitNo">Unit # (if applicable):
-        <input type="text" placeholder="20" id="unitNo" />
-        </label>
-        <button type="submit" id="btn_searchHome">Search</button> 
-      </div>
-      
-      <!-- Place holder div to show errors if any -->
-      <div id="showError"></div>
+    
       
       
       <!-- <table id="address">
@@ -95,52 +150,8 @@
         </tr>
       </table> -->
       
-      <form action="#" method="POST" id="showSearchForm">
-          <fieldset>
-            <legend>ADDRESS</legend>
-            <label for="streetAddress">Street Address:
-                    <input type="text" name="streetAddress" id="streetAddress" />
-            </label>
-            <label for="city">City:
-                    <input type="text" name="city" id="city" />
-            </label>
-            <label for="state">State:
-                    <input type="text" name="state" id="state" />
-            </label>
-            <label for="zip">ZipCode:
-                    <input type="text" name="zip" id="zip" />
-            </label>
-          </fieldset>
-          <fieldset>
-              <legend>HOME DETAILS</legend>
-              <label for="homeType">Home Type:
-                      <input type="text" name="homeType" id="homeType" /> 
-              </label>
-              <label for="beds">Bedrooms:
-                    <input type="text" name="beds" id="beds" />
-            </label>
-            <label for="baths">Baths:
-                    <input type="text" name="baths" id="baths" />
-            </label>
-            <label for="built">Year Built:
-                    <input type="text" name="built" id="built" />
-            </label>
-            <label for="area">Area(sqft)
-                    <input type="text" name="area" id = "sqft" />
-            </label>
-            <label for="zillowId">Zillow ID:
-                        <input type="text" name="zillowId" id = "zillowId" />
-                </label>
-            <div id="zillowLink">
-                    
-            </div>
-          </fieldset>
-          
-          <button type="submit" id="save_search">Save to Dashboard</button>
-          <button type="reset"> Clear Data</button>
-
-      </form>
-      <footer class="fixed-bottom">
+      <div class="row">
+      <footer class="col-sm-12">
             <h5>CAST-AROUND</h5>
             <div class="socialIcons">
                 <a href="" ><i class="fa fa-github"></i></a>
@@ -149,7 +160,7 @@
             </div>
             <p>Copyright &copy; 2018 | Cast-Around</p> 
         </footer>
-      <!-- Replace the value of the key parameter with your own API key. -->
+    </div>
       <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

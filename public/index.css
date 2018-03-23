@@ -9,6 +9,14 @@ body{
     font-family: 'Helvetica', sans-serif;
 }
 
+header{
+    margin-top: 80px;
+    text-align: center;
+}
+
+a{
+    color: #10b2c7;
+}
 .clear				{ clear: both; }
 
 /* Bootstrap styles override */
@@ -43,6 +51,9 @@ body{
     border-radius: 0;
 }
 
+.activeLink{
+    font-weight: bold;
+}
 footer{
     padding: 20px;
 }
@@ -221,5 +232,12 @@ footer{
     }
     .features {
         padding: 80px 20px;
+    }
+
+    footer{
+        position: relative;
+        bottom: 0;
+        left: 0;
+        right: 0;
     }
 } /* End width 768px queries */

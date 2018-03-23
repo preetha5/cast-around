@@ -25,13 +25,19 @@ function displayList(data){
     for (index in data.homes) {
         console.log(data.homes);
         let imgLink = encodeURI(`https://maps.googleapis.com/maps/api/streetview?size=400x200&location=${data.homes[index].streetAddress}+${data.homes[index].city}+${data.homes[index].zip}&key=${GOOGLE_API_KEY}`);
+        let directionLink = encodeURI(`https://www.google.com/maps/dir/?api=1&destination=${data.homes[index].streetAddress}+${data.homes[index].city}+${data.homes[index].zip}`);
         console.log(imgLink);
         $('#savedHomes').append(
-         `<li data-zpid = ${data.homes[index].zillowId}>
-         <a href='#'>${data.homes[index].streetAddress} ${data.homes[index].city} ${data.homes[index].zip}<a>
+        `<div class="col-sm-6">
+         <li data-zpid = ${data.homes[index].zillowId} >
+         <h5 class="home_add">${data.homes[index].streetAddress} ${data.homes[index].city} ${data.homes[index].zip}</h5>
          <img src=${imgLink} alt="street view of the home" class="home_img" />
-         <button type="button" class="btn_deleteHome">Delete Item </button>
-         </li>`);
+         <div>
+         <button type="button" class="btn btn-sm btn-primary btn_addNotes">Add/View Notes </button>
+         <button type="button" class=" btn btn-sm btn-danger btn_deleteHome">Delete Item </button>
+         <a href="${directionLink}" target="_blank" class="btn_getDirections">Get Directions </a>
+         </div>
+         </li></div>`);
      }
 }
 
@@ -39,12 +45,8 @@ function displayList(data){
 function getListOfHomesFromDB(){
     console.log('Retrieving homes...')
     //Make an ajax get request to 'user/dashboard
-    //on success callback Work on response to create template.
-    //setTimeout(function(){ displayList(MOCK_LIST_HOMES)}, 100);
-
-    // $.getJSON(DASHBOARD_URL, function(data) {
-    //     displayList(data);
-    // });
+    //on success callback Work on response to create list item template
+    //with returned data.
     
     $.ajax({
         type: 'GET',
@@ -57,8 +59,9 @@ function getListOfHomesFromDB(){
 }
 
 function listItemListener(){
-    $('#savedHomes').on('click', 'li', function(){
-        const zpid = $(this).data('zpid');
+    $('#savedHomes').on('click', '.btn_addNotes', function(){
+        const zpid = $(this).closest('li').data('zpid');
+        console.log("zid of item clicked", zpid);
         // $.getJSON(HOME_DETAILS_URL+'/'+zpid, function(data){
         //     //store the object in localstorage
         //     localStorage.setItem('home', JSON.stringify(data));
