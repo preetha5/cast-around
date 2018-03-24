@@ -14,7 +14,8 @@ header{
 }
 
 #savedHomes .home_img{
-    width: 80%;
+        width: 70%;
+        margin-bottom: 15px;
 }
 #savedHomes .home_add, #savedHomes .home_img{
     margin-bottom: 20px;

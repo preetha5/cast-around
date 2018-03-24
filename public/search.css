@@ -80,15 +80,15 @@ input::placeholder {
 }
 #showSearchForm label{
     width: 40%;
-    text-align : right;
+    /* text-align : right; */
 }
 #showSearchForm input{
     border: none;
     width: 40%;
 }
 
-#showSearchForm #streetAddress{
-    width: 60%
+#showSearchForm input {
+    width: 60%;
 }
 
 #zillowLink{

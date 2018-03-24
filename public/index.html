@@ -7,28 +7,12 @@
     <title>Cast-Around</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="index.css">
+     <link href="https://fonts.googleapis.com/css?family=Gentium+Basic:700,700i|Lato|Lobster" rel="stylesheet">
+     <link rel="stylesheet" href="index.css">
+     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
 </head>
 <body>
-        <nav class="navbar fixed-top navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="#">Cast-Around</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-              
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                  <ul class="navbar-nav mt-2 mt-lg-0 navbar-right">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#signUpModal" id="linkSignUp" data-toggle="modal" data-target="#signUpModal">Sign Up</a>
-                    </li>
-                    <span class="navbar-text"><em>Already registered?</em></span>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#loginModal" id="linkLogIn" data-toggle="modal" data-target="#loginModal">Log In </a>
-                    </li>
-                  </ul>
-                </div>
-              </nav>
+      
     <!-- <nav class="navbar navbar-inverse">
         <div class="navbar-header">
         <a class="navbar-brand" href="#">Cast-Around</a>
@@ -40,168 +24,131 @@
         </ul> 
     </nav> -->
     <div class="container-fluid">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                      <div class="carousel-item active">
-                        <img class="d-block w-100" src="images/slider-1.jpg" alt="First slide">
-                        <div class="carousel-caption ">
-                            <h5>“I had fallen in love with the outside 
-                                    but looking at my notes in <span class="titleName">Cast-Around</span> I remembered that the 
-                                    total repairs would come up to 40K !”</h5>
-                        </div>
-                      </div>
-                      <div class="carousel-item">
-                        <img class="d-block w-100" src="images/slider-1.jpg" alt="Second slide">
-                        <div class="carousel-caption ">
-                                <h5>“I had fallen in love with the outside 
-                                        but looking at my notes in <span class="titleName">Cast-Around</span> I remembered that the 
-                                        total repairs would come up to 40K !”</h5>
-                            </div>
-                      </div>
-                      <div class="carousel-item">
-                        <img class="d-block w-100" src="images/slider-1.jpg" alt="Third slide">
-                        <div class="carousel-caption ">
-                                <h5>“I had fallen in love with the outside 
-                                        but looking at my notes in <span class="titleName">Cast-Around</span> I remembered that the 
-                                        total repairs would come up to 40K !”</h5>
-                            </div>
-                      </div>
+            <nav class="navbar fixed-top navbar-expand-lg navbar-light">
+                    <a class="navbar-brand" href="#">Cast-Around</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                      <ul class="navbar-nav mt-2 mt-lg-0 navbar-right">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#signUpModal" id="linkSignUp" data-toggle="modal" data-target="#signUpModal">Sign Up</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#loginModal" id="linkLogIn" data-toggle="modal" data-target="#loginModal">Log In </a>
+                        </li>
+                      </ul>
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Next</span>
-                    </a>
-                  </div>
-
-
-
-
-        <!-- Older carousel -->
-        <!-- <div id="myCarousel" class="carousel slide" data-ride="carousel" 
-        data-interval="6000"> -->
-            <!-- Indicators -->
-            <!-- <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-            </ol> -->
-        
-            <!-- Wrapper for slides -->
-            <!-- <div class="carousel-inner">
-        
-                <div class="item active">
-                <img src="images/slider-1.jpg" alt="Los Angeles" style="width:100%;">
-                <div class="carousel-caption">
-                    <h3>Los Angeles</h3>
-                    <p>LA is always so much fun!</p>
-                </div>
-                </div>
-        
-                <div class="item">
-                <img src="images/slider-1.jpg" alt="Chicago" style="width:100%;">
-                <div class="carousel-caption">
-                    <h3>Chicago</h3>
-                    <p>Thank you, Chicago!</p>
-                </div>
-                </div>
-            
-                <div class="item">
-                <img src="images/slider-1.jpg" alt="New York" style="width:100%;">
-                <div class="carousel-caption">
-                    <h3>“I had fallen in love with the outside 
-        but looking at my notes in <span class="titleName">Cast-Around</span> I remembered that the 
-        total repairs would come up to 40K !”</h3> -->
-                    <!-- <p></p>
-                </div>
-                </div>
-            
-                </div> -->
-                
-            <!-- Left and right controls -->
-            <!-- <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-                <span class="sr-only">Next</span>
-            </a>
-            </div> End Carousel -->
-
-
-            <h3 class="featuresTitle">FEATURES</h3>
-    <section class="row features">
-        <div class="col-sm-4 feature">
-            <h3>Collect</h3>
-            <p>Cast-Around helps collect all 
-                your thoughts about the houses you
-                during your house hunting.</p>
+                  </nav>
+        <div class="row">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img class="d-block w-100" src="images/slider-1.jpg" alt="First slide">
+                            <div class="carousel-caption ">
+                                <h5>“I had fallen in love with the outside 
+                                        but looking at my notes in <span class="titleName">Cast-Around</span> I remembered that the 
+                                        total repairs would come up to 40K !”</h5>
+                            </div>
+                          </div>
+                          <div class="carousel-item">
+                            <img class="d-block w-100" src="images/slider-2.jpg" alt="Second slide">
+                            <div class="carousel-caption ">
+                                    <h5>“25 homes in one month!! Without <span class="titleName">Cast-Around</span> to keep
+                                     track of those properties, I would have been lost.." </h5>
+                                </div>
+                          </div>
+                          <div class="carousel-item">
+                            <img class="d-block w-100" src="images/slider-3.jpg" alt="Third slide">
+                            <div class="carousel-caption ">
+                                    <h5>“<span class="titleName">Cast-Around</span> helped us not only during the long house hunting process but also 
+                                    even after to keep track of the improvements we wanted to make." </h5>
+                                </div>
+                          </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Next</span>
+                        </a>
+                      </div>
         </div>
+
+    <section class="row features">
+        <h5 class="featuresTitle col-sm-12">Ease your house-hunting stress wth Cast-Around</h5>
         <div class="col-sm-4 feature">
-            <h3>Organize</h3>
-            <p>Organize you what you like or don;t like about the house
-                you saw.
+            <p class="icon"><i class="fas fa-clipboard-list"></i></p>
+            <h4>COLLECT</h4>
+            <p>Cast-Around helps you collect and store the list of homes during your long
+                house-hunting process.
             </p>
         </div>
         <div class="col-sm-4 feature">
-            <h3>Decide</h3>
-            <p>You have one decision to make and a zillion things to think about before
+            <p class="icon"><i class="fas fa-lightbulb"></i></p>
+            <h4>ORGANIZE</h4>
+            <p>Keep track of what you what you liked or didn't like about the house
+                you saw. They are added in the collection, for you to go 
+                back to at anytime and review.
+            </p>
+        </div>
+        <div class="col-sm-4 feature">
+            <p class="icon"><i class="fas fa-balance-scale"></i></p>
+            <h4>DECIDE</h4>
+            <p>You have one decision to make and a million things to think about before
                 buying your dream house. Let Cast-Around help you.
             </p>
         </div>
     </section>
-    <h3 class="stepsTitle">HOW IT WORKS</h3>
+    <h4 class="stepsTitle">3 EASY STEPS</h4>
     <section class="row steps">
-        
+               
             <div class="col-sm-4">
-                <div class="step">
+                <div class="step stepOne">
                         <h2>STEP 1</h2>
-                        <p>Lorem ipsum dolor sit amet, 
-                            consectetur adipisicing elit. 
-                            Odio nam eos dolore, excepturi et dignissimos
-                            quae sunt at hic facere consequatur nulla 
-                            fuga fugit ad soluta? Autem, vero! Fugit, delectus!</p>
+                        <p>From the search page,
+                            add and make a list of the houses 
+                            you are going to look , either at open house
+                            or with your realtor.
+                        </p>
                 </div>
                 
             </div>
             <div class="col-sm-4 ">
-                    <div class="step">
+                    <div class="step stepTwo">
                         <h2>STEP 2</h2>
-                        <p>Lorem ipsum dolor sit amet, 
-                                consectetur adipisicing elit. 
-                                Odio nam eos dolore, excepturi et dignissimos
-                                quae sunt at hic facere consequatur nulla 
-                                fuga fugit ad soluta? Autem, vero! Fugit, delectus!</p>
+                        <p>After you look at the house
+                            jot down  information such as your 
+                            ideas, concerns, price details
+                            etc in the home details page.
+                        </p>
                         </div>
             </div>
             <div class="col-sm-4">
-                <div class="step">
+                <div class="step stepThree">
                     <h2>STEP 3</h2>
-                    <p>Lorem ipsum dolor sit amet, 
-                            consectetur adipisicing elit. 
-                            Odio nam eos dolore, excepturi et dignissimos
-                            quae sunt at hic facere consequatur nulla 
-                        fuga fugit ad soluta? Autem, vero! Fugit, delectus!</p>
-                </div>
-                
+                    <p>Now that you have all your notes in one app, all you need
+                        to do is review and decide which one will become your dream home.
+                    </p>
+                </div>   
+            </div>
+            <div class="col-sm-12">
+                <h4 class="text-center">Ready to <a  href="#" data-toggle="modal" data-target="#signUpModal">Sign Up !</a></h4>
             </div>
     </section>
 
     <footer>
-        <h5>CAST-AROUND</h5>
         <div class="socialIcons">
-            <a href="" ><i class="fa fa-github"></i></a>
-            <a href="" ><i class="fa fa-linkedin"></i></a>
-            <a href="" ><i class="fa fa-globe"></i></a>
+            <a href="" ><i class="fab fa-github"></i></a>
+            <a href="" ><i class="fab fa-linkedin"></i></a>
+            <a href="" ><i class="fas fa-globe"></i></a>
         </div>
         <p>Copyright &copy; 2018 | Cast-Around</p> 
     </footer>
