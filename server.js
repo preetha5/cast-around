@@ -24,6 +24,11 @@ const {Home} = require('./models');
 
 const app = express();
 
+//User Authentication-Router
+passport.use(localStrategy);
+passport.use(jwtStrategy);
+const jwtAuth = passport.authenticate('jwt', {session:false});
+
 //Middleware and routers
 app.use(express.static('public'));
 app.use(morgan('common'));
@@ -39,18 +44,17 @@ app.use(function (req, res, next) {
   next();
 });
 
-//User Authentication-Router
-passport.use(localStrategy);
-passport.use(jwtStrategy);
+
 
 app.use('/signup', usersRouter);
 app.use('/login', authRouter);
 
-const jwtAuth = passport.authenticate('jwt', {session:false});
+
 
 // Routers for endpoints
 //Get the search request from client and pass it to zillow API router
 app.use('/user/search',[jwtAuth, jsonParser], searchRouter );
+
 
 //Get the save to DB request from search page and pass it to home Details router
 app.use('/user/home_details',jwtAuth, homeDetailsRouter);

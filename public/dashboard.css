@@ -5,7 +5,7 @@ header{
 }
 
 #savedHomes{
-    margin-bottom: 30px;
+    margin-bottom: 75px;
     text-align: center;
 }
 #savedHomes li{
@@ -19,5 +19,21 @@ header{
 }
 #savedHomes .home_add, #savedHomes .home_img{
     margin-bottom: 20px;
+}
+
+.btn_addNotes, .btn_deleteHome{
+    font-size: .6rem;
+}
+
+@media screen and (min-width:768px){
+   
+    .btn_addNotes, .btn_deleteHome{
+        font-size: .875rem;
+    }
+
+    #savedHomes .home_img{
+        width: 100%;
+    }
+
 }
 

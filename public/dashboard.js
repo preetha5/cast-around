@@ -8,7 +8,6 @@ const currentUser = sessionStorage.getItem("user");
 function logOutListener(){
     $('#btn_logout').click(function(e){
         e.preventDefault();
-        alert('logout');
         localStorage.removeItem("home");
         sessionStorage.removeItem("authToken");
         window.location.href = "./index.html"
@@ -33,7 +32,7 @@ function displayList(data){
          <h5 class="home_add">${data.homes[index].streetAddress} ${data.homes[index].city} ${data.homes[index].zip}</h5>
          <img src=${imgLink} alt="street view of the home" class="home_img" />
          <div>
-         <button type="button" class="btn btn-sm btn-primary btn_addNotes">Add/View Notes </button>
+         <button type="button" class="btn btn-sm btn-success btn_addNotes">Add/View Notes </button>
          <button type="button" class=" btn btn-sm btn-danger btn_deleteHome">Delete Item </button>
          <a href="${directionLink}" target="_blank" class="btn_getDirections">Get Directions </a>
          </div>

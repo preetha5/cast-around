@@ -12,9 +12,45 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Gentium+Basic:700,700i|Lato|Lobster" rel="stylesheet">
     <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="/search.css">
     <title>Home Details</title>
     <style>
+        .showSearchForm, .fm_userNotes{
+            display: block;
+        }
+        .fm_userNotes{
+            
+        }
+        .fm_userNotes label{
+            vertical-align: top;
+            margin-bottom: 3rem;
+        }
+        .fm_userNotes input::placeholder, .fm_userNotes textarea::placeholder {
+            color: grey;
+            font-style: italic;
+        }
+        .fm_userNotes input, .fm_userNotes textarea{
+            border: solid 1px #fff;
+            border-radius: 5px;
+            background-color: #ffffff;
+            margin-bottom: 10px;
+            color: grey;
+            padding: 5px;
+        }
+
+        .fm_userNotes textarea{
+            width: 50%;
+            font-size: .8rem;
+        }
+
+        @media screen and (min-width:768px){
+            #btn_saveNotes, #btn_goToDashboard{
+                display: inline-block;
+                width: 39%;
+                margin: 0 5%;
+            }
         
+        }
     </style>
 </head>
 <body>
@@ -25,7 +61,10 @@
                 </button>
         
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                        <ul class="navbar-nav mt-2 mt-lg-0 navbar-right">
+                    <ul class="navbar-nav mt-2 mt-lg-0 navbar-right">
+                        <li class="nav-item">
+                                <a class="nav-link" href="./index.html">About</a>
+                            </li>
                         <li class="nav-item">
                         <a class="nav-link" href="./search.html">Search</a>
                         </li>
@@ -42,70 +81,86 @@
     <div class="row">
         <header class="title col-sm-12">
             <h2>Add-View Home Details</h2>
-            <p>Add what you found about the house you saw.</p>
+            <p>Save the details about the property you saw.</p>
         </header>
+    </div> <!--end Row -->
+    <div class="row">
         <div class="col-sm-12">
-        <form action="#" method="POST" id="homeDetailsForm">
+        <form action="#" method="POST" class= "showSearchForm" id="homeDetailsForm">
             <fieldset>
               <legend>ADDRESS</legend>
               <label for="streetAdd">Street Address:
-                      <input type="text" name="streetAdd" id="streetAdd" />
               </label>
+              <input type="text" name="streetAdd" id="streetAdd" />
               <label for="city">City:
-                      <input type="text" name="city" id="city" />
               </label>
+              <input type="text" name="city" id="city" />
               <label for="state">State:
-                      <input type="text" name="state" id="state" />
               </label>
+              <input type="text" name="state" id="state" />
               <label for="zip">ZipCode:
-                      <input type="text" name="zip" id="zip" />
               </label>
+              <input type="text" name="zip" id="zip" />
             </fieldset>
             <fieldset>
                 <legend>HOME DETAILS</legend>
                 <label for="beds">Bedrooms:
-                      <input type="text" name="beds" id="beds" />
               </label>
+              <input type="text" name="beds" id="beds" />
               <label for="baths">Baths:
-                      <input type="text" name="baths" id="baths" />
               </label>
+              <input type="text" name="baths" id="baths" />
               <label for="built">Year Built:
-                      <input type="text" name="built" id="built" />
               </label>
+              <input type="text" name="built" id="built" />
               <label for="area">Area(sqft):
-                <input type="text" name="area" id="area" />
                 </label>
+              <input type="text" name="area" id="area" />
                 <label for="zillowId">Zillow ID:
-                        <input type="text" name="zillowId" id = "zillowId" />
                 </label>
+                <input type="text" name="zillowId" id = "zillowId" />
             </fieldset>
         </form>
-        <form action="" id="fm_userNotes">
+    </div> 
+    </div><!--end Row -->
+    <div class="row">
+        <div class="col-sm-12">
+        <form action="" class="fm_userNotes" id="fm_userNotes">
         <fieldset>
                 <legend>YOUR NOTES</legend>
                 <label for="offer">Your Offer Price:
-                        <input type="text" name="offer" id="offer" />
                 </label>
+                <input type="text" name="offer" placeholder="300,000" id="offer" />
+                <!-- <input type="text" name="offer" id="offer" placeholder="abcd" /> -->
+                <br>
                 <label for="pros">What I Like:
-                        <input type="textarea" name="pros" id="pros" />
                 </label>
+                <textarea rows="2" cols="20" wrap="hard" 
+                placeholder="Nice front yard, close to school" 
+                name="pros" id="pros">
+                    </textarea>
+                <br>
+                <!-- <input type="textarea" name="pros" id="pros" /> -->
                 <label for="cons">What Needs Work:
-                        <input type="textarea" name="cons" id="cons" />
                 </label>
+                <textarea rows="2" cols="20" wrap="hard" 
+                placeholder="Needs new paint , bathroom needs repair"
+                 name="cons" id="cons">
+                    </textarea>
+                <!-- <input type="textarea" name="cons" id="cons" /> -->
                 <label for="nickName">Nick Name:
-                        <input type="text" name="nickName" placeholder="House with backyard barbeque" id="nickName" />
                 </label>
+                <input type="text" name="nickName" placeholder="Blue front door" id="nickName" />
                 </fieldset>
-                <button type="submit" id="btn_saveNotes" >Save Your Notes</button>
-                <button type="button" id="btn_goToDashboard"> Go Back to Dashboard</button>
-        </form>
-        
-        <div class="col-sm-12" id="feedback">
-        </div>
-        </div>
+                <button type="submit" class="btn btn-success" id="btn_saveNotes" >Save Your Notes</button>
+                <button type="button" class="btn btn-secondary" id="btn_goToDashboard"> Go Back to Dashboard</button>
+                <div class="col-sm-12" id="feedback">
+                    </div>
+            </form>
+        </div> 
+        </div><!-- fm_userNotes End Row -->
         <div class="row">
-                <footer class="col-sm-12">
-                      <h5>CAST-AROUND</h5>
+                <footer class="col-sm-12 footer">
                       <div class="socialIcons">
                           <a href="" ><i class="fa fa-github"></i></a>
                           <a href="" ><i class="fa fa-linkedin"></i></a>
@@ -113,8 +168,8 @@
                       </div>
                       <p>Copyright &copy; 2018 | Cast-Around</p> 
                   </footer>
-        </div>
-        </div><!-- End on container -->
+        </div> <!-- footer End Row -->
+    </div><!-- End on container -->
         
         
     <script

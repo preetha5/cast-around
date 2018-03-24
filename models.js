@@ -19,7 +19,7 @@ const homeSchema = mongoose.Schema({
         zillowId: {type:Number, required:true }
     },
     user_notes:{
-        offer: {type:Number, default:0},
+        offer: {type:Number, default:''},
         pros: {type:String, default:''},
         cons: {type:String, default:''},
         nickName: {type:String, default:''}

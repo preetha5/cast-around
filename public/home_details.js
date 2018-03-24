@@ -6,7 +6,6 @@ const token = sessionStorage.getItem("authToken");
 function logOutListener(){
     $('#btn_logout').click(function(e){
         e.preventDefault();
-        alert('logout');
         localStorage.removeItem("home");
         sessionStorage.removeItem("authToken");
         window.location.href = "./index.html"

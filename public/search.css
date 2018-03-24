@@ -52,9 +52,11 @@
   #locationField input{
     width:100%;
     margin-bottom: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
-input::placeholder {
+input::placeholder , .fm_userNotes input::placeholder {
     color: grey;
     font-style: italic;
     font-size: .8rem;
@@ -67,35 +69,79 @@ input::placeholder {
 #showError{
     margin-top: 10px;
 }
-#showSearchForm{
+.showSearchForm, .fm_userNotes{
     display: none;
     padding: 14px;
     margin: 10px auto 200px;
     width: 90%;
     border: solid 1px;
+    border-radius: 5px;
+    color: white;
+    background-color: #9fc4d1;
 }
 
-#showSearchForm legend{
+.showSearchForm fieldset{
+    margin-bottom: 1em;
+}
+
+.showSearchForm legend, .fm_userNotes legend{
     text-align: center;
 }
-#showSearchForm label{
-    width: 40%;
-    /* text-align : right; */
-}
-#showSearchForm input{
-    border: none;
-    width: 40%;
+
+.showSearchForm a{
+    color: #263b54;
+    font-weight: bold;
 }
 
-#showSearchForm input {
-    width: 60%;
+.showSearchForm label, .fm_userNotes label {
+    width: 40%;
+    text-align: right;
+    font-size: .8rem;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.showSearchForm input, .showSearchForm textarea, .fm_userNotes input{
+    border: none;
+    padding: 5px;
+    width: 50%;
+    font-size: .8rem;
+    color: white;
+    background-color: #9fc4d1;
 }
 
 #zillowLink{
     text-align: center;
 }
 
-#save_search{
-    margin: 5px auto;
+#save_search, #btn_saveNotes, #btn_goToDashboard{
+    margin: 1em auto;
     display: block;
+}
+
+@media screen and (min-width:768px){
+    .showSearchForm label , .fm_userNotes label{
+        width: 46%;
+        font-size: 1.2rem;
+        margin-right: 15px;
+    }
+    
+    .showSearchForm input, .showSearchForm textarea,
+    .fm_userNotes input, .fm_userNotes textarea{
+        width: 50%;
+        font-size: 1.2rem;
+    }
+
+    #save_search, #btn_saveNotes, #btn_goToDashboard {
+        font-size: 1.4rem;
+    }
+
+    .showSearchForm textarea{
+        height: 30px;
+        overflow: hidden;
+    }
+    #showSaveResult{
+        text-align: center;
+        font-size: 1.2rem;
+    }
 }
