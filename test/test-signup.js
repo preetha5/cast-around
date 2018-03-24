@@ -1,5 +1,6 @@
 'use strict';
-global.DATABASE_URL = 'mongodb://localhost/jwt-auth-demo-test';
+//Import config data
+const {TEST_DATABASE_URL, PORT} = require('../config');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 
@@ -24,7 +25,7 @@ describe('/signup', function() {
   const lastNameB = 'UserB';
 
   before(function() {
-    return runServer();
+    return runServer(TEST_DATABASE_URL);
   });
 
   after(function() {
