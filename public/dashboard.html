@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/index.css">
     <link href="https://fonts.googleapis.com/css?family=Gentium+Basic:700,700i|Lato|Lobster" rel="stylesheet">
     <link rel="stylesheet" href="./dashboard.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
 </head>
 <body>
     <nav class="navbar fixed-top navbar-expand-lg navbar-light">
@@ -39,14 +40,14 @@
             </ul>
         </div>
         </nav>
-        <div class="container-fluid">
+        <div class="container-fluid" role="main">
             <div class="row">
                 <header class="title col-sm-12">
                     <h2>List of Your Saved Homes</h2>
                 </header>
             <div class="title col-sm-12" id="feedback"></div>
             
-                <ul class="row" id="savedHomes">
+                <ul class="row" id="savedHomes" aria-live="polite">
 
 
                 </ul>
@@ -63,11 +64,11 @@
         </div><!-- End container -->  
 <footer class="footer col-sm-12">
         <!-- <h5>CAST-AROUND</h5> -->
-        <div class="socialIcons">
-            <a href="" ><i class="fa fa-github"></i></a>
-            <a href="" ><i class="fa fa-linkedin"></i></a>
-            <a href="" ><i class="fa fa-globe"></i></a>
-        </div>
+        <div class="socialIcons ">
+                <a href="https://github.com/preetha5/cast-around" target="_blank" aria-label="Link to github account"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/preetha-ramakrishnan-07b1891/" target="_blank" aria-label="Link to linked-in account" ><i class="fab fa-linkedin"></i></a>
+                <a href="http://www.prdesignerstudio.com" target="_blank" aria-label="Link to app developer portfolio"><i class="fas fa-globe"></i></a>
+            </div>
         <p>Copyright &copy; 2018 | Cast-Around</p> 
     </footer>  
     <script

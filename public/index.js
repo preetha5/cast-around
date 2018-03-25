@@ -120,6 +120,7 @@ function openLoginModal(){
     $('#linkLogIn').click( function(e) {
         e.preventDefault();
         $('#fm_login').show();
+        $('#fm_login').attr("aria-hidden","false");
     });
 }
 
@@ -127,6 +128,7 @@ function openSignUpModal(){
     $('#linkSignUp').click( function(e) {
         e.preventDefault();
         $('#fm_signUp').show();
+        $('#fm_signUp').attr("aria-hidden","false");
     });
 }
 

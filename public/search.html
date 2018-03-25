@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/index.css">
     <link rel="stylesheet" href="/search.css">
     <title>Search Page</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
 </head>
 <body>
         <nav class="navbar fixed-top navbar-expand-lg navbar-light">
@@ -39,7 +40,7 @@
             </ul>
         </div>
         </nav>
-        <div class="container-fluid">
+        <div class="container-fluid" role="main">
             <div class="row">
                 <header class="title col-sm-12">
                     <h2>Which house are you going to look at next? </h2>
@@ -47,13 +48,13 @@
                 </header>
             <div class="col-sm-12">
                 <div id="locationField">
-                        <label for="streetAddress">Street Address:
+                        <label for="autocomplete">Street Address:
                     </label>
-                    <input id="autocomplete" placeholder="1234 El Camino street, San Francisco, CA, USA"
+                    <input name="streetAddress" id="autocomplete" placeholder="1234 El Camino street, San Francisco, CA, USA"
                             onFocus="geolocate()" type="text">
                     <label for="unitNo">Unit # (if applicable):
                     </label>
-                    <input type="text" id="unitNo" />
+                    <input type="text" name="unitNo" id="unitNo" />
                     <br>
                     <button type="submit" id="btn_searchHome" class="btn btn-info">Search</button> 
                     <div>
@@ -68,7 +69,7 @@
             </div> <!-- end row -->
             <div class="row">
                 <div class="col-sm-12">
-                    <form action="#" method="POST" class="showSearchForm" id="showSearchForm">
+                    <form action="#" method="POST" aria-hidden="true" class="showSearchForm" id="showSearchForm">
                         <fieldset>
                             <legend>ADDRESS</legend>
                             <label for="streetAddress">Street Address:</label>
@@ -99,7 +100,7 @@
                             <label for="built">Year Built:
                             </label>
                             <input type="text" name="built" id="built" />
-                            <label for="area">Area(sqft)
+                            <label for="sqft">Area(sqft)
                             </label>
                             <input type="text" name="area" id = "sqft" />
                             <label for="zillowId">Zillow ID:
@@ -119,11 +120,11 @@
 
             <div class="row">
                     <footer class="col-sm-12 footer">
-                          <div class="socialIcons">
-                              <a href="" ><i class="fa fa-github"></i></a>
-                              <a href="" ><i class="fa fa-linkedin"></i></a>
-                              <a href="" ><i class="fa fa-globe"></i></a>
-                          </div>
+                        <div class="socialIcons ">
+                                <a href="https://github.com/preetha5/cast-around" target="_blank" aria-label="Link to github account"><i class="fab fa-github"></i></a>
+                                <a href="https://www.linkedin.com/in/preetha-ramakrishnan-07b1891/" target="_blank" aria-label="Link to linked-in account" ><i class="fab fa-linkedin"></i></a>
+                                <a href="http://www.prdesignerstudio.com" target="_blank" aria-label="Link to app developer portfolio"><i class="fas fa-globe"></i></a>
+                            </div>
                           <p>Copyright &copy; 2018 | Cast-Around</p> 
                       </footer>
                   </div>

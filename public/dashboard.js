@@ -27,16 +27,15 @@ function displayList(data){
         let directionLink = encodeURI(`https://www.google.com/maps/dir/?api=1&destination=${data.homes[index].streetAddress}+${data.homes[index].city}+${data.homes[index].zip}`);
         console.log(imgLink);
         $('#savedHomes').append(
-        `<div class="col-md-6">
-         <li  data-zpid = ${data.homes[index].zillowId} >
+        `
+         <li  class="col-md-6" data-zpid = ${data.homes[index].zillowId} >
          <h5 class="home_add">${data.homes[index].streetAddress} ${data.homes[index].city} ${data.homes[index].zip}</h5>
          <img src=${imgLink} alt="street view of the home" class="home_img" />
          <div>
          <button type="button" class="btn btn-sm btn-success btn_addNotes">Add/View Notes </button>
          <button type="button" class=" btn btn-sm btn-danger btn_deleteHome">Delete Item </button>
          <a href="${directionLink}" target="_blank" class="btn_getDirections">Get Directions </a>
-         </div>
-         </li></div>`);
+         </div></li>`);
      }
 }
 

@@ -114,6 +114,7 @@ function populateForm(data){
       <a target=_blank href="${data.links[0].mapthishome}">View this property on Zillow</a>
     `);
     $('#showSearchForm').show();
+    $('#showSearchForm').attr("aria-hidden","false");
 }
 
 //Call Zillow API to return property details
