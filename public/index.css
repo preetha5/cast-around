@@ -81,15 +81,21 @@ footer{
     border-bottom: solid 1px #263b54;
     /* margin-bottom: 20px; */
 }
+
+.carousel-control-next-icon, .carousel-control-prev-icon{
+    background-color: #9fc4d1;
+    width: 30px;
+    height: 30px;
+}
 .carousel-caption {
-    bottom: 0;
+    bottom: -20px;
 }
 .carousel-caption{
     color: #263b54;
-    width: 60%;
+    width: 56%;
 }
 .carousel-caption h5{
-    font-size: .8rem;
+    font-size: .7rem;
     color: #9E9E9E;
 }
 .carousel-indicators li{
@@ -193,11 +199,6 @@ footer{
     background-color: #9fc4d1;
     padding: 15px;
     border-radius: 10px;
-    /* position: absolute;
-    left: 20%;
-    top: 30%;
-    right: 20%;
-    z-index: 20; */
     text-align:center;
     }
 
@@ -251,17 +252,14 @@ footer{
 }
 
 /* **************MEDIA QUERIES************* */
+@media screen and (min-width:360px){
+    .carousel-caption {
+        bottom: 0;
+    }
+}
+
 
 @media screen and (min-width:768px){
-
-    /* Header styles */
-    #linkSignUp, #linkLogIn{
-        margin-right: 10px;
-        padding: 5px;
-        background-color: #10b2c7;
-        color: #fcfcf9;
-        border-radius: 5px;
-    }
 
     #fm_login .button, #fm_signup .button{
         margin: 0 auto;
@@ -305,7 +303,10 @@ footer{
     .step{
         height: 220px;
         }
-
+    
+    .readyToSignup{
+        margin-bottom: 60px;
+    }
     .footer{
         text-align: center;
         color: #10b2c7;
@@ -317,6 +318,15 @@ footer{
 
 @media screen and (min-width: 1020px){
 
+ /* Header styles */
+ #linkSignUp, #linkLogIn{
+    margin-right: 10px;
+    padding: 5px;
+    background-color: #10b2c7;
+    color: #fcfcf9;
+    border-radius: 5px;
+}
+
 .carousel-caption {
     bottom: 20%;
 }
@@ -325,8 +335,10 @@ footer{
     padding: 20px 65px;
 }
 
-.footer{
-    
-}
+} /* End width 1020px queries*/
 
-} /* End width 1020px queries
+@media screen and (min-width: 1280px){
+    .carousel-caption {
+        bottom: 26%;
+    }
+} /* End width 1280px queries*/

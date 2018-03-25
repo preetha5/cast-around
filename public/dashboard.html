@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/index.css">
     <link href="https://fonts.googleapis.com/css?family=Gentium+Basic:700,700i|Lato|Lobster" rel="stylesheet">
+    <link rel="stylesheet" href="/index.css">
     <link rel="stylesheet" href="./dashboard.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
 </head>
@@ -69,13 +69,49 @@
                 <a href="http://www.prdesignerstudio.com" target="_blank" aria-label="Link to app developer portfolio"><i class="fas fa-globe"></i></a>
             </div>
         <p>Copyright &copy; 2018 | Cast-Around</p> 
-    </footer>  
+    </footer> 
+
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="loginModalLabel">Login to Continue</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                <form action="#" method="post" id="fm_login">
+                        <fieldset>
+                            <div>
+                                <label for="email">Email</label>
+                                <input type="email"  name="email" id="email" placeholder="joe@smith.com" required/>  
+                            </div>
+                            <div class="clear"></div>
+                            
+                            <label for="password">Password</label>
+                            <input type="password"  name="password" id="password" required/>
+                            <div class="clear"></div>
+                            <br />
+                            <input type="submit" class="button" name="commit" value="Log in"/>	
+                        </fieldset>
+                        <p>For demo use : User : house_hunter@demo.com , Password: demo1234</p>
+                        
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div id="loginResult"></div>
+                </div>
+              </div>
+            </div>
+          </div>
     <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
   integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
-    <script src="/dashboard.js"></script>
+  <script src="/index.js"></script> 
+  <script src="/dashboard.js"></script>
 </body>
 </html>

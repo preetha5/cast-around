@@ -79,6 +79,10 @@ function logOutListener(){
 
 //If an error is returned by server show it to the user inside a div
 function handleError(err){
+    if (err.status === 401){
+        $('#loginModal').modal('show');
+        return;
+    } 
     $('#showError').empty();
   $('#showError').append(
     `<p>Error: Server returned ${err.status}. ${err.responseText} </p>`

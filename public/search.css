@@ -72,7 +72,7 @@ input::placeholder , .fm_userNotes input::placeholder {
 .showSearchForm, .fm_userNotes{
     display: none;
     padding: 14px;
-    margin: 10px auto 200px;
+    margin: 10px auto 50px;
     width: 90%;
     border: solid 1px;
     border-radius: 5px;
@@ -99,6 +99,7 @@ input::placeholder , .fm_userNotes input::placeholder {
     font-size: .8rem;
     font-weight: bold;
     margin-right: 10px;
+    vertical-align: text-top;
 }
 
 .showSearchForm input, .showSearchForm textarea, .fm_userNotes input{
@@ -124,6 +125,7 @@ input::placeholder , .fm_userNotes input::placeholder {
         width: 46%;
         font-size: 1.2rem;
         margin-right: 15px;
+        vertical-align: top;
     }
     
     .showSearchForm input, .showSearchForm textarea,
@@ -137,11 +139,18 @@ input::placeholder , .fm_userNotes input::placeholder {
     }
 
     .showSearchForm textarea{
-        height: 30px;
+        height: 33px;
         overflow: hidden;
+        resize: none;
     }
     #showSaveResult{
         text-align: center;
         font-size: 1.2rem;
+    }
+}
+
+@media screen and (min-width:1280px){
+    .showSearchForm textarea{
+        height: 40px;
     }
 }

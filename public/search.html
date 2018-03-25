@@ -44,14 +44,16 @@
             <div class="row">
                 <header class="title col-sm-12">
                     <h2>Which house are you going to look at next? </h2>
-                    <p>Search and add those properties to the dashboard.</p>
+                    <p>Search and add those homes to the dashboard.
+                        Make sure the propery is a home address.
+                    </p>
                 </header>
             <div class="col-sm-12">
                 <div id="locationField">
                         <label for="autocomplete">Street Address:
                     </label>
                     <input name="streetAddress" id="autocomplete" placeholder="1234 El Camino street, San Francisco, CA, USA"
-                            onFocus="geolocate()" type="text">
+                            onFocus="geolocate()" type="text" required>
                     <label for="unitNo">Unit # (if applicable):
                     </label>
                     <input type="text" name="unitNo" id="unitNo" />
@@ -131,36 +133,41 @@
 
         </div><!-- End container -->
     
-      
-      
-      <!-- <table id="address">
-        <tr>
-          <td class="label">Street address</td>
-          <td class="slimField"><input class="field" id="street_number"
-                disabled="true" /></td>
-          <td class="wideField" colspan="2"><input class="field" id="route"
-                disabled="true" /></td>
-        </tr>
-        <tr>
-          <td class="label">City</td>
-          <td class="wideField" colspan="3"><input class="field" id="locality"
-                disabled="true"></input></td>
-        </tr>
-        <tr>
-          <td class="label">State</td>
-          <td class="slimField"><input class="field"
-                id="administrative_area_level_1" disabled="true"></input></td>
-          <td class="label">Zip code</td>
-          <td class="wideField"><input class="field" id="postal_code"
-                disabled="true"></input></td>
-        </tr>
-        <tr>
-          <td class="label">Country</td>
-          <td class="wideField" colspan="3"><input class="field"
-                id="country" disabled="true"></input></td>
-        </tr>
-      </table> -->
-      
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="loginModalLabel">Login to Continue</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form action="#" method="post" id="fm_login">
+                    <fieldset>
+                        <div>
+                            <label for="email">Email</label>
+                            <input type="email"  name="email" id="email" placeholder="joe@smith.com" required/>  
+                        </div>
+                        <div class="clear"></div>
+                        
+                        <label for="password">Password</label>
+                        <input type="password"  name="password" id="password" required/>
+                        <div class="clear"></div>
+                        <br />
+                        <input type="submit" class="button" name="commit" value="Log in"/>	
+                    </fieldset>
+                    <p>For demo use : User : house_hunter@demo.com , Password: demo1234</p>
+                    
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div id="loginResult"></div>
+            </div>
+            </div>
+        </div>
+        </div>
+
       
       <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -169,7 +176,7 @@
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8N5rOofifOf4lKK7qLlHR7b6y8HlT_2E&libraries=places&callback=initAutocomplete"
               async defer></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
-
+       <script src="./index.js"></script> 
       <script src="/search.js"></script>
 </body>
 </html>

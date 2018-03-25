@@ -29,6 +29,10 @@ passport.use(localStrategy);
 passport.use(jwtStrategy);
 const jwtAuth = passport.authenticate('jwt', {session:false});
 
+app.use('/signup', usersRouter);
+app.use('/login', authRouter);
+
+
 //Middleware and routers
 app.use(express.static('public'));
 app.use(morgan('common'));
@@ -45,12 +49,6 @@ app.use(function (req, res, next) {
 });
 
 
-
-app.use('/signup', usersRouter);
-app.use('/login', authRouter);
-
-
-
 // Routers for endpoints
 //Get the search request from client and pass it to zillow API router
 app.use('/user/search',[jwtAuth, jsonParser], searchRouter );
@@ -62,49 +60,10 @@ app.use('/user/home_details',jwtAuth, homeDetailsRouter);
 //Get request to the dashboard will list all user-saved homes
 app.use('/user/dashboard',jwtAuth, dashboardRouter );
 
-
 /* BEGIN ENDPOINTS */
 app.get('/', (req,res) => {
     res.sendFile(__dirname + '/public/index.html');
 });
-
-
-
-//End points for the dashboard page to get list of saved homes by user
-// app.get('/user/dashboard', (req,res) => {
-//     Home
-//         .find()
-//         .then(homes=>{
-//             res.json({
-//                 homes: homes.map(
-//                     (home) => home.dashboard_serialize())
-//             });
-//         })
-//         .catch(
-//             err=> {
-//                 console.error(err);
-//                 res.status(500).json({message: 'Internal server error'});
-//             });
-//     }); //Get endpoint for dashboard page
-    
-//Delete the record when DELETE request comes with zid in the path
-// app.delete('/user/dashboard/:zid', (req, res) =>{
-//   console.log("inside delete endpoint", req.params.zid);
-//   Home
-//     .findOne({"home_details.zillowId" : req.params.zid})
-//     .remove()
-//     .then(() =>{
-//       console.log(`Deleted home record with ZID ${req.params.zid}`);
-//       res.status(204).end();
-//     })
-//     .catch(
-//       err=> {
-//         console.error(err);
-//         res.status(500).json({message: 'Internal server error'});
-//     });
-// })
-
-/* END : ENDPOINTS */
 
 let server;
 

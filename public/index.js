@@ -1,3 +1,11 @@
+//If unauthenticated user closes the Login modal
+//before logging in, redirect them back to index page.
+function loginModalCloseListener(){
+    $("#loginModal").on('hidden.bs.modal',(e) =>{
+        e.preventDefault();
+        window.location.href = "./index.html";
+    })
+}
 
 function signUpFailed(err){
     $("#signupResult").empty();
@@ -131,4 +139,5 @@ $(function(){
     loginFormSubmit();
     signUpFormSubmit();
     loginRedirect();
+    loginModalCloseListener();
 })

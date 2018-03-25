@@ -4,17 +4,22 @@ const GOOGLE_API_KEY = 'AIzaSyD8N5rOofifOf4lKK7qLlHR7b6y8HlT_2E';
 const token = sessionStorage.getItem("authToken");
 const currentUser = sessionStorage.getItem("user");
 
+
 //If user clicks on logout, destroy the local JWT and redirect to Landing page
 function logOutListener(){
     $('#btn_logout').click(function(e){
         e.preventDefault();
         localStorage.removeItem("home");
         sessionStorage.removeItem("authToken");
-        window.location.href = "./index.html"
+        window.location.href = "./index.html";
     })
 }
 
 function handleError(err){
+    if (err.status === 401){
+        $('#loginModal').modal('show');
+        return;
+    }
     $('#feedback').append(
       `<p>Error: Server returned ${err.status}. ${err.responseText} </p>`
     );
@@ -43,7 +48,6 @@ function displayList(data){
 
 //Call Zillow API to return property details
 function getListOfHomesFromDB(){
-    console.log('Retrieving homes...')
     //Make an ajax get request to 'user/dashboard
     //on success callback Work on response to create list item template
     //with returned data.

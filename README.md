@@ -28,7 +28,7 @@ DashBoard Page
 
 Home Details Page
 
-![Image of home_Details](https://github.com/preetha5/cast-around/blob/master/screenshots/screenshot_home_details.jpg)
+![Image of home_Details](https://github.com/preetha5/cast-around/blob/master/screenshots/screenshot_homedetails.jpg)
 
 ## TECHNOLOGIES USED
 ### PRODUCTION
