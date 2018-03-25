@@ -20,34 +20,34 @@ Having been a house hunter myself , I had been looking for a easy to remember my
 
 Landing Page
 
-![Image of Cast-Around App](https://dashboard.heroku.com/apps/cast-around/images/greeneats.jpg)
+![Image of Cast-Around App](https://github.com/preetha5/cast-around/blob/master/screenshots/screenshot_landing.jpg)
 
-Recipe Search
+DashBoard Page
 
-![Image of dashboard](https://dashboard.heroku.com/apps/cast-around/images/search_recipes.jpg)
+![Image of dashboard](https://github.com/preetha5/cast-around/blob/master/screenshots/screenshot_dashboard.jpg)
 
-Restaurant Search
+Home Details Page
 
-![Image of home_Details](https://dashboard.heroku.com/apps/cast-around/images/search_restaurants.jpg)
+![Image of home_Details](https://github.com/preetha5/cast-around/blob/master/screenshots/screenshot_home_details.jpg)
 
 ## TECHNOLOGIES USED
 ### PRODUCTION
-#### NodeJS
-#### Express
-#### MongoDB
-#### Mongoose
-#### jQuery
-#### Bootstrap
-#### AJAX/JSON
-#### PassportJS
-#### bcryptJS
-### DEVELOPMENT
-#### Mocha/Chai
-#### fakerJS
-#### Travis CI
-#### VS Code Editor
-#### NPM - Nodemon
-#### Git
+* NodeJS
+* Express
+* MongoDB
+* Mongoose
+* jQuery
+* Bootstrap
+* AJAX/JSON
+* PassportJS
+* bcryptJS
+### DEVELOPMENT-TESTING-INTEGRATION
+* Mocha/Chai
+* fakerJS
+* Travis CI
+* VS Code Editor
+* NPM - Nodemon
+* Git
 
 ## AUTHOR
 Preetha Ramakrishnan
