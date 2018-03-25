@@ -167,8 +167,8 @@ footer{
 .footer{
     text-align: center;
     color: #10b2c7;
-    position: fixed;
-        bottom: 0;
+    /* position: fixed;
+        bottom: 0; */
     width: 100%;
 }
 

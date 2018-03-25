@@ -5,7 +5,7 @@ header{
 }
 
 #savedHomes{
-    margin-bottom: 75px;
+    /* margin-bottom: 75px; */
     text-align: center;
 }
 #savedHomes li{
@@ -25,6 +25,11 @@ header{
     font-size: .6rem;
 }
 
+.btn_addHomes a{
+    width: 50%;
+    margin: 0 auto;
+}
+
 @media screen and (min-width:768px){
    
     .btn_addNotes, .btn_deleteHome{
@@ -33,6 +38,10 @@ header{
 
     #savedHomes .home_img{
         width: 100%;
+    }
+
+    .btn_addHomes{
+        margin-bottom: 94px;
     }
 
 }

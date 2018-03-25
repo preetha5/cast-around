@@ -27,8 +27,8 @@ function displayList(data){
         let directionLink = encodeURI(`https://www.google.com/maps/dir/?api=1&destination=${data.homes[index].streetAddress}+${data.homes[index].city}+${data.homes[index].zip}`);
         console.log(imgLink);
         $('#savedHomes').append(
-        `<div class="col-sm-6">
-         <li data-zpid = ${data.homes[index].zillowId} >
+        `<div class="col-md-6">
+         <li  data-zpid = ${data.homes[index].zillowId} >
          <h5 class="home_add">${data.homes[index].streetAddress} ${data.homes[index].city} ${data.homes[index].zip}</h5>
          <img src=${imgLink} alt="street view of the home" class="home_img" />
          <div>
