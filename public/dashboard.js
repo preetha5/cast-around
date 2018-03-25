@@ -20,6 +20,8 @@ function handleError(err){
     );
   }
 
+//Create list html template for each home property
+//saved in the database (Homes collection)
 function displayList(data){
     for (index in data.homes) {
         console.log(data.homes);
@@ -59,15 +61,6 @@ function getListOfHomesFromDB(){
 function listItemListener(){
     $('#savedHomes').on('click', '.btn_addNotes', function(){
         const zpid = $(this).closest('li').data('zpid');
-        console.log("zid of item clicked", zpid);
-        // $.getJSON(HOME_DETAILS_URL+'/'+zpid, function(data){
-        //     //store the object in localstorage
-        //     localStorage.setItem('home', JSON.stringify(data));
-
-        //     //redirect the user to home_details.html
-        //     window.location.href = "./home_details.html";
-        // });
-
         $.ajax({
             type: 'GET',
             url: HOME_DETAILS_URL+'/'+zpid,

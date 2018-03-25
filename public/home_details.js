@@ -46,6 +46,7 @@ function getAndDisplayHomeInfo(){
     displayHomeInfo(home);
 }
 
+//Redirect user to dashboard page on button click
 function goToDashboardHandler(){
     $("#btn_goToDashboard").click((e) =>{
         e.preventDefault();
@@ -70,7 +71,7 @@ function successMessage (){
     `);
   }
 
-// Create an object from serialized object
+// Create an object from serialized object to be passed to AJAX call
 function makeHomeObj(){
     let formData = $("#fm_userNotes").serializeArray();
     console.log(formData);
@@ -81,12 +82,12 @@ function makeHomeObj(){
     return myObj;
   }
 
-
+//Save the data added by the user in the "user notes" form to the DB
+//for the corresponding home document
 function saveUserNotesHandler(){
     $('#btn_saveNotes').click((e) => {
         console.log("user notes to be saved");
         e.preventDefault();
-        //let userNotes = $("#fm_userNotes").serializeArray();
         const zpid = $('#zillowId').val();
         const userNotes = makeHomeObj();
         console.log(userNotes);

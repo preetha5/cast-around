@@ -1,14 +1,14 @@
 //Global values
 const GET_DEEP_URL = "http://www.zillow.com/webservice/GetDeepSearchResults.htm";
 const GET_UPDATED_PROP_URL = "http://www.zillow.com/webservice/GetUpdatedPropertyDetails.htm";
-
 const SEARCH_URL = "/user/search";
 const HOME_DETAILS_URL = '/user/home_details';
 let homeAddress = {};
 const token = sessionStorage.getItem("authToken");
 const currentUser = sessionStorage.getItem("user");
 
-// BEGIN: Places Autocomplete feature using the Google Places API to help users fill in the information.
+// BEGIN: Places Autocomplete feature using the Google Places API 
+//to help users fill in the information.
 
 var placeSearch, autocomplete;
 var componentForm = {
@@ -34,23 +34,15 @@ function initAutocomplete() {
 
 function fillInAddress() {
   // Get the place details from the autocomplete object.
-  var place = autocomplete.getPlace();
-
-  console.log(place);
-
-  // for (var component in componentForm) {
-  //   document.getElementById(component).value = '';
-  //   document.getElementById(component).disabled = false;
-  // }
-
+  let place = autocomplete.getPlace();
   // Get each component of the address from the place details
   // and fill the corresponding field on the form.
-  for (var i = 0; i < place.address_components.length; i++) {
-    var addressType = place.address_components[i].types[0];
+  for (let i = 0; i < place.address_components.length; i++) {
+    let addressType = place.address_components[i].types[0];
     //console.log(addressType);
     
     if (componentForm[addressType]) {
-      var val = place.address_components[i][componentForm[addressType]];
+      let val = place.address_components[i][componentForm[addressType]];
       homeAddress[addressType] = val;
       }
   }
@@ -73,7 +65,6 @@ function geolocate() {
     });
   }
 }
-
 // END: Places Autocomplete feature using the Google Places API to help users fill in the information.
 
 //If user clicks on logout, destroy the local JWT and redirect to Landing page
@@ -96,7 +87,6 @@ function handleError(err){
 
 //Populate the form with data returned by zillow API
 function populateForm(data){
-   // console.log(data);
     //Update Address in the forms
     $("#city").val(data.address[0].city);
     $("#state").val(data.address[0].state);
@@ -139,7 +129,6 @@ function getDeepSearchResults(search_address){
 
 //Get and display zillow home info
 function getAndDisplayHomeInfo(){
-  //console.log(homeAddress['unitNo']);
   let search_address = {
     address : `${homeAddress['street_number']} ${homeAddress['route']} ${homeAddress['unitNo']}`,
     citystatezip : `${homeAddress['locality']} ${homeAddress['administrative_area_level_1']} ${homeAddress['postal_code']}`
@@ -190,7 +179,7 @@ function successMessage (){
   <p>Item has been saved to Dashboard. Go <a href="./dashboard.html">here </a> to view list. </p>
   `);
 }
-//A handler that listens to save to dahsboard button being clicked
+//A handler that listens to save to dashboard button being clicked
 function saveSearchHandler(e){
   e.preventDefault();
   const homeObj = makeHomeObj();

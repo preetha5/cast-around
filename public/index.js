@@ -7,6 +7,7 @@ function signUpFailed(err){
     );
 }
 
+//After signup successful, hide sign up and show login window
 function loginRedirect(){
     $("#signupResult").on("click", "#loginRedirect", (evt) =>{
         console.log("redirecting to login ..");
@@ -25,6 +26,7 @@ function signUpSucceeded(res){
     );
 }
 
+//Get the sign up details and call the server auth API to create account
 function signUpFormSubmit(){
     $("#fm_signup").submit((e) => {
         e.preventDefault();
@@ -101,13 +103,6 @@ function loginFormSubmit(){
             success: loginSucceeded,
             error: loginFailed
           });
-
-
-        // if (!(name === "house-hunter-01" && password === "demo")){
-        //     $('#fm_login').append('<p>Login failed </p>');
-        //     return;
-        // }
-        //window.location.href = './dashboard.html';
     });
 }
 function closeLoginModal(){
@@ -133,10 +128,7 @@ function openSignUpModal(){
 }
 
 $(function(){
-    //openLoginModal();
-    //closeLoginModal();
     loginFormSubmit();
-    //openSignUpModal();
     signUpFormSubmit();
     loginRedirect();
 })
