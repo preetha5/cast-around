@@ -120,7 +120,6 @@ function loginFormSubmit(){
             username:email,
             password: password
         };
-        console.log(loginObj);
         //Make an ajax post request with new user details to register
         $.ajax({
             type: 'POST',

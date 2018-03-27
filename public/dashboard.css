@@ -39,7 +39,11 @@
     }
 
     #savedHomes .home_img{
-        width: 100%;
+        width: 75%;
+    }
+
+    #savedHomes li {
+        margin-bottom: 65px;
     }
 
     .btn_addHomes{
