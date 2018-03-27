@@ -98,10 +98,13 @@ footer{
 .carousel-caption {
     bottom: -20px;
 }
-.carousel-caption{
+
+.carousel-caption {
     color: #263b54;
-    width: 56%;
+    width: 59%;
+    text-align: left;
 }
+
 .carousel-caption h5{
     font-size: .7rem;
     color: #9E9E9E;
@@ -327,7 +330,7 @@ footer{
 @media screen and (min-width: 992px){
 
  /* Header styles */
- #linkSignUp, #linkLogIn{
+ #linkSignUp, #linkLogIn, #linkLogout, #btn_logout{
     margin-left: .5rem;
     margin-right: .5rem;
     padding: 5px 10px;

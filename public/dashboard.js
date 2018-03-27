@@ -6,14 +6,14 @@ const currentUser = sessionStorage.getItem("user");
 
 
 //If user clicks on logout, destroy the local JWT and redirect to Landing page
-function logOutListener(){
-    $('#btn_logout').click(function(e){
-        e.preventDefault();
-        localStorage.removeItem("home");
-        sessionStorage.removeItem("authToken");
-        window.location.href = "./index.html";
-    })
-}
+// function logOutListener(){
+//     $('#linkLogout').click(function(e){
+//         e.preventDefault();
+//         localStorage.removeItem("home");
+//         sessionStorage.removeItem("authToken");
+//         window.location.href = "./index.html";
+//     })
+// }
 
 function handleError(err){
     if (err.status === 401){

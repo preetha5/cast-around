@@ -1,3 +1,26 @@
+//Global vars
+let loggedIn = false;
+
+function setLoginLogoutLink(){
+    if( sessionStorage.getItem("authToken") !== null) {
+        $('.logInListItem').empty().append(
+            `
+            <a class="nav-link" href="#" id="linkLogout">Log Out</a>
+            `
+        );
+    }
+}
+
+//If user clicks on logout, destroy the local JWT and redirect to Landing page
+function logOutListener(){
+    $('#linkLogout').click(function(e){
+        e.preventDefault();
+        localStorage.removeItem("home");
+        sessionStorage.removeItem("authToken");
+        window.location.href = "./index.html"
+    })
+}
+
 //If unauthenticated user closes the Login modal
 //before logging in, redirect them back to index page.
 function loginModalCloseListener(){
@@ -71,6 +94,9 @@ function signUpFormSubmit(){
     });
 };
 
+function setLoginLogout(){
+
+}
 function loginFailed(err){
     $("#loginResult").empty();
     console.log(err);
@@ -82,6 +108,7 @@ function loginFailed(err){
 //On successful login, store the JWT in local storage
 //Redirect the user to Search page
 function loginSucceeded(response){
+    loggedIn = true;
     console.log(response);
     sessionStorage.setItem("authToken", response.authToken);
     sessionStorage.setItem("user", response.username);
@@ -90,11 +117,9 @@ function loginSucceeded(response){
 
 function loginFormSubmit(){
     $('#fm_login').submit((e) => {
-        
         e.preventDefault();
         let email  = $('#email').val();
         let password  = $('#password').val();
-
         const loginObj = {
             username:email,
             password: password
@@ -136,6 +161,8 @@ function openSignUpModal(){
 }
 
 $(function(){
+    setLoginLogoutLink();
+    logOutListener();
     loginFormSubmit();
     signUpFormSubmit();
     loginRedirect();

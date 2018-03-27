@@ -56,19 +56,38 @@ function goToDashboardHandler(){
 
 //If an error is returned by server show it to the user inside a div
 function handleError(err){
-    $('#feedback').empty();
-    $('#feedback').append(
-      `<p>Error: Server returned ${err.status}. ${err.responseText} </p>`
-    );
+    $('.feedbackDiv').empty();
+
+    if (err.status ===500){
+        $('.feedbackDiv').append(
+            `<p>Error: No changes have been made to the notes fields. </p>`
+          );
+          $('#feedbackModal').modal('show');
+          return;
+    }
+    $('.feedbackDiv').append(
+          `<p>Error: Server returned ${err.status}. ${err.responseText} </p>`
+        );
+    $('#feedbackModal').modal('show');
+    // $('#feedback').empty();
+    // $('#feedback').append(
+    //   `<p>Error: Server returned ${err.status}. ${err.responseText} </p>`
+    // );
   }
 
 
 //On getting a success status after saving, show confirm message to user.
 function successMessage (){
-    $('#feedback').empty();
-    $('#feedback').append(`
-    <p>Your Information has been saved. </p>
-    `);
+    $('.feedbackDiv').empty();
+    $('.feedbackDiv').append(
+          `<p>Your Information has been saved.</p>`
+        );
+    $('#feedbackModal').modal('show');
+
+    // $('#feedback').empty();
+    // $('#feedback').append(`
+    // <p>Your Information has been saved. </p>
+    // `);
   }
 
 // Create an object from serialized object to be passed to AJAX call
@@ -90,7 +109,7 @@ function saveUserNotesHandler(){
         e.preventDefault();
         const zpid = $('#zillowId').val();
         const userNotes = makeHomeObj();
-        console.log(userNotes);
+        console.log(zpid ,userNotes);
         //Save the user notes to the DB in AJAX call
         $.ajax({
             type: 'PATCH',

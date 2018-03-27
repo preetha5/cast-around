@@ -63,9 +63,9 @@
         
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav mt-2 mt-lg-0 navbar-right">
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                                 <a class="nav-link" href="./index.html">About</a>
-                            </li>
+                            </li> -->
                         <li class="nav-item">
                         <a class="nav-link" href="./search.html">Search</a>
                         </li>
@@ -131,9 +131,8 @@
                 <legend>YOUR NOTES</legend>
                 <label for="offer">Your Offer Price:
                 </label>
-                <input type="text" name="offer" placeholder="300,000" id="offer" />
-                <!-- <input type="text" name="offer" id="offer" placeholder="abcd" /> -->
-                <br>
+                <input type="number" name="offer" placeholder="300000" id="offer" />
+               <br>
                 <label for="pros">What I Like:
                 </label>
                 <textarea rows="2" cols="20" wrap="hard" 
@@ -155,8 +154,6 @@
                 </fieldset>
                 <button type="submit" class="btn btn-success" id="btn_saveNotes" >Save Your Notes</button>
                 <button type="button" class="btn btn-secondary" id="btn_goToDashboard"> Go Back to Dashboard</button>
-                <div class="col-sm-12" id="feedback">
-                    </div>
             </form>
         </div> 
         </div><!-- fm_userNotes End Row -->
@@ -171,14 +168,33 @@
                   </footer>
         </div> <!-- footer End Row -->
     </div><!-- End on container -->
-        
+    
+    <div id="feedbackModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+          
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <!-- <h4 class="modal-title"></h4> -->
+                </div>
+                <div class="modal-body feedbackDiv">
+                  <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+          
+            </div>
+          </div>
         
     <script
     src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8N5rOofifOf4lKK7qLlHR7b6y8HlT_2E&libraries=places&callback=initAutocomplete"
-      async defer></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8N5rOofifOf4lKK7qLlHR7b6y8HlT_2E&libraries=places&callback=initAutocomplete"
+      async defer></script> -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
     <script src="/home_details.js"></script>
 </body>

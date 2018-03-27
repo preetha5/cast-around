@@ -25,18 +25,21 @@
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mt-2 mt-lg-0 navbar-right">
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                         <a class="nav-link" href="./index.html">About</a>
-                    </li>
+                    </li> -->
                 <li class="nav-item">
                 <a class="nav-link activeLink" href="./search.html">Search</a>
                 </li>
                 <li class="nav-item">
                 <a class="nav-link" href="./dashboard.html">Dashboard </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item logInListItem">
+                        <a class="nav-link" href="#loginModal" id="linkLogIn" data-toggle="modal" data-target="#loginModal">Log In </a>
+                </li>
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="./index.html" id="btn_logout">Log Out </a>
-                    </li>
+                    </li> -->
             </ul>
         </div>
         </nav>
@@ -45,22 +48,24 @@
                 <header class="title col-sm-12">
                     <h2>Which house are you going to look at next? </h2>
                     <p>Search and add those homes to the dashboard.
-                        Make sure the propery is a home address.
+                        Make sure the property is a home address.
                     </p>
                 </header>
             <div class="col-sm-12">
                 <div id="locationField">
                         <label for="autocomplete">Street Address:
                     </label>
-                    <input name="streetAddress" id="autocomplete" placeholder="1234 El Camino street, San Francisco, CA, USA"
-                            onFocus="geolocate()" type="text" required>
-                    <label for="unitNo">Unit # (if applicable):
+                    <input name="streetAddress" id="getAddress" placeholder="1234 El Camino street, San Francisco, CA, USA"
+                            onFocus="" type="text" required>
+                    <!-- <label for="unitNo">Unit # (if applicable):
                     </label>
-                    <input type="text" name="unitNo" id="unitNo" />
+                    <input type="text" name="unitNo" id="unitNo" /> -->
                     <br>
                     <button type="submit" id="btn_searchHome" class="btn btn-info">Search</button> 
                     <div>
+                        <a href="https://zillow.com" target="_blank">
                             <img src="images/Zillowlogo.png" alt="search powered by zillow">
+                        </a>     
                     </div>
                     <div id="showError"></div>
                     </div>
@@ -168,13 +173,32 @@
         </div>
         </div>
 
+    <div id="feedbackModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+            
+                <!-- Modal content-->
+                <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <!-- <h4 class="modal-title"></h4> -->
+                </div>
+                <div class="modal-body feedbackDiv">
+                    <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+            
+            </div>
+            </div>
       
       <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8N5rOofifOf4lKK7qLlHR7b6y8HlT_2E&libraries=places&callback=initAutocomplete"
-              async defer></script>
+      <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8N5rOofifOf4lKK7qLlHR7b6y8HlT_2E&libraries=places&callback=initAutocomplete"
+              async defer></script> -->
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
        <script src="./index.js"></script> 
       <script src="/search.js"></script>
