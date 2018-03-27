@@ -1,6 +1,8 @@
 //Global vars
 let loggedIn = false;
 
+//Update the login/out button depending of if the 
+//user authtoken exists
 function setLoginLogoutLink(){
     if( sessionStorage.getItem("authToken") !== null) {
         $('.logInListItem').empty().append(
@@ -41,7 +43,6 @@ function signUpFailed(err){
 //After signup successful, hide sign up and show login window
 function loginRedirect(){
     $("#signupResult").on("click", "#loginRedirect", (evt) =>{
-        console.log("redirecting to login ..");
         evt.preventDefault();
         $("#signUpModal").modal('hide');
         $("#loginModal").modal('show');
@@ -78,7 +79,6 @@ function signUpFormSubmit(){
             username: newUser,
             password: newPass
         };
-        console.log(signUpObj);
         //Make an ajax post request with new user details to register
         $.ajax({
             type: 'POST',
@@ -94,12 +94,9 @@ function signUpFormSubmit(){
     });
 };
 
-function setLoginLogout(){
-
-}
+//On login failure show the error
 function loginFailed(err){
     $("#loginResult").empty();
-    console.log(err);
     $("#loginResult").append(`
         <p>Login Failure. Incorrect username or password.${err.responseText}</p>`
     );
@@ -109,7 +106,6 @@ function loginFailed(err){
 //Redirect the user to Search page
 function loginSucceeded(response){
     loggedIn = true;
-    console.log(response);
     sessionStorage.setItem("authToken", response.authToken);
     sessionStorage.setItem("user", response.username);
     window.location.href = './search.html';

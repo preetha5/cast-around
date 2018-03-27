@@ -39,9 +39,8 @@ describe('Search endpoints', function(){
         User.findOne()
             .then(user =>{
             authToken = createAuthToken(user);
-            console.log("beforeeach authtoken is :" , authToken);
             done();
-            })
+        });
     });
 
     afterEach(function () {

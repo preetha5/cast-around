@@ -33,16 +33,10 @@ function displayHomeInfo(data){
     $("#offer").val(data.user_notes.offer);
 }
 
-//Call Zillow API to return property details
-function getHomeDetailsFromDB(displayHomeInfo){
-    //setTimeout(function(){ displayHomeInfo(MOCK_HOME_INFO)}, 100);
-}
 
 //Get and display zillow home info
 function getAndDisplayHomeInfo(){
-    //getHomeDetailsFromDB(displayHomeInfo)
     let home = JSON.parse(localStorage.getItem('home'));
-    console.log(home);
     displayHomeInfo(home);
 }
 
@@ -69,10 +63,6 @@ function handleError(err){
           `<p>Error: Server returned ${err.status}. ${err.responseText} </p>`
         );
     $('#feedbackModal').modal('show');
-    // $('#feedback').empty();
-    // $('#feedback').append(
-    //   `<p>Error: Server returned ${err.status}. ${err.responseText} </p>`
-    // );
   }
 
 
@@ -83,17 +73,11 @@ function successMessage (){
           `<p>Your Information has been saved.</p>`
         );
     $('#feedbackModal').modal('show');
-
-    // $('#feedback').empty();
-    // $('#feedback').append(`
-    // <p>Your Information has been saved. </p>
-    // `);
   }
 
 // Create an object from serialized object to be passed to AJAX call
 function makeHomeObj(){
     let formData = $("#fm_userNotes").serializeArray();
-    console.log(formData);
     let myObj ={};
     $.each(formData, (index, item) =>{
       myObj[item.name] = item.value;
@@ -109,7 +93,6 @@ function saveUserNotesHandler(){
         e.preventDefault();
         const zpid = $('#zillowId').val();
         const userNotes = makeHomeObj();
-        console.log(zpid ,userNotes);
         //Save the user notes to the DB in AJAX call
         $.ajax({
             type: 'PATCH',

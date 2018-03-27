@@ -109,13 +109,6 @@ describe('Dashboard endpoints', function(){
     //Test should find all homes for a given user
     describe('GET endpoint', function () { 
         it('should get list of homes on requesting to user\\dashboard\\:username', function(){
-        // return User.findOne()
-        // .then(user =>{
-        //     console.log(user);
-        //     const authToken = createAuthToken(user);
-        //     return(authToken);
-        // })
-        // .then(token =>{
             return chai.request(app)
             .get(`/user/dashboard/${username}`)
             .set('Authorization',`bearer ${authToken}`)
@@ -131,7 +124,6 @@ describe('Dashboard endpoints', function(){
                 });
             });
         });
-       // });
     });
     
 
@@ -139,15 +131,8 @@ describe('Dashboard endpoints', function(){
     describe('DELETE endpoint', function () {
         it('should remove item from DB on DELETE post to user\\dashboard\\zid', function(){
             let homeToDelete;
-            // User.findOne()
-            // .then(user =>{
-            // authToken = createAuthToken(user);
-            // console.log("authtoken is :" , authToken);
-            // })
-            // .then(() =>{
             return Home
                 .findOne()
-            //})
             .then( dbHome=>{
                 console.log("trying to delete" , dbHome);
                 homeToDelete = dbHome;

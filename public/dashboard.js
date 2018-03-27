@@ -4,17 +4,6 @@ const GOOGLE_API_KEY = 'AIzaSyD8N5rOofifOf4lKK7qLlHR7b6y8HlT_2E';
 const token = sessionStorage.getItem("authToken");
 const currentUser = sessionStorage.getItem("user");
 
-
-//If user clicks on logout, destroy the local JWT and redirect to Landing page
-// function logOutListener(){
-//     $('#linkLogout').click(function(e){
-//         e.preventDefault();
-//         localStorage.removeItem("home");
-//         sessionStorage.removeItem("authToken");
-//         window.location.href = "./index.html";
-//     })
-// }
-
 function handleError(err){
     if (err.status === 401){
         $('#loginModal').modal('show');
@@ -29,10 +18,8 @@ function handleError(err){
 //saved in the database (Homes collection)
 function displayList(data){
     for (index in data.homes) {
-        console.log(data.homes);
         let imgLink = encodeURI(`https://maps.googleapis.com/maps/api/streetview?size=400x200&location=${data.homes[index].streetAddress}+${data.homes[index].city}+${data.homes[index].zip}&key=${GOOGLE_API_KEY}`);
         let directionLink = encodeURI(`https://www.google.com/maps/dir/?api=1&destination=${data.homes[index].streetAddress}+${data.homes[index].city}+${data.homes[index].zip}`);
-        console.log(imgLink);
         $('#savedHomes').append(
         `
          <li  class="col-md-6" data-zpid = ${data.homes[index].zillowId} >
@@ -90,8 +77,6 @@ function deleteItemListener(){
             url: DASHBOARD_URL+'/'+zpid,
             type: 'DELETE',
             success: function(result) {
-                // Do something with the result
-                console.log('item deleted');
                 //Hide the elem from view
                 liElem.hide();
             },

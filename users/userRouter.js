@@ -19,7 +19,6 @@ Router.post('/', jsonParser, (req, res) => {
         location: missingFields
      })
  }
-console.log(req.body);
  //Check that input values are of type 'String'
  const inputStrings = ["username", "password", "firstName", "lastName"];
  const nonStrings = inputStrings.find(input => input in req.body 

@@ -52,27 +52,19 @@
                     </p>
                 </header>
             <div class="col-sm-12">
-                <div id="locationField">
-                        <label for="autocomplete">Street Address:
+                <form action="" method="POST" id="locationField">
+                <label for="autocomplete">Street Address:
                     </label>
-                    <input name="streetAddress" id="getAddress" placeholder="1234 El Camino street, San Francisco, CA, USA"
-                            onFocus="" type="text" required>
-                    <!-- <label for="unitNo">Unit # (if applicable):
-                    </label>
-                    <input type="text" name="unitNo" id="unitNo" /> -->
-                    <br>
-                    <button type="submit" id="btn_searchHome" class="btn btn-info">Search</button> 
-                    <div>
+                <input name="streetAddress" id="getAddress" placeholder="1234 El Camino street, San Francisco, CA, USA"
+                    type="text" required>
+                    <input type="submit" class="btn btn-info" id="btn_searchHome" value ="Search">
+                <div>
                         <a href="https://zillow.com" target="_blank">
                             <img src="images/Zillowlogo.png" alt="search powered by zillow">
                         </a>     
                     </div>
-                    <div id="showError"></div>
-                    </div>
-                   
-                      <!-- Place holder div to show errors if any -->
-                      
-            </div><!--end location field -->
+                </form>               
+             </div><!--end location field -->
             </div> <!-- end row -->
             <div class="row">
                 <div class="col-sm-12">

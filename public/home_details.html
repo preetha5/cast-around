@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -18,9 +15,6 @@
     <style>
         .showSearchForm, .fm_userNotes{
             display: block;
-        }
-        .fm_userNotes{
-            
         }
         .fm_userNotes label{
             vertical-align: top;
@@ -44,14 +38,34 @@
             font-size: .8rem;
         }
 
-        @media screen and (min-width:768px){
-            #btn_saveNotes, #btn_goToDashboard{
-                display: inline-block;
-                width: 39%;
-                margin: 0 5%;
-            }
-        
+    @media screen and (min-width:768px){
+        #btn_saveNotes, #btn_goToDashboard{
+            display: inline-block;
+            width: 39%;
+            margin: 0 5%;
         }
+
+    .fm_userNotes label {
+        width: 40%;
+    }
+
+    .showSearchForm label{
+        width : 48%;
+        margin: 0;
+    }
+    .showSearchForm input, .showSearchForm textarea{
+        width : 49%;
+    }
+
+    .showSearchForm textarea{
+        height: 70px;
+    }
+    }
+    @media screen and (min-width: 1280px){
+    .showSearchForm textarea {
+        height: 40px;
+    }
+        }   
     </style>
 </head>
 <body>
@@ -63,9 +77,6 @@
         
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav mt-2 mt-lg-0 navbar-right">
-                        <!-- <li class="nav-item">
-                                <a class="nav-link" href="./index.html">About</a>
-                            </li> -->
                         <li class="nav-item">
                         <a class="nav-link" href="./search.html">Search</a>
                         </li>
@@ -88,45 +99,48 @@
     <div class="row">
         <div class="col-sm-12">
         <form action="#" method="POST" class= "showSearchForm" id="homeDetailsForm">
-            <fieldset>
-              <legend>ADDRESS</legend>
-              <label for="streetAdd">Street Address:
-              </label>
-              <input type="text" name="streetAdd" id="streetAdd" />
-              <label for="city">City:
-              </label>
-              <input type="text" name="city" id="city" />
-              <label for="state">State:
-              </label>
-              <input type="text" name="state" id="state" />
-              <label for="zip">ZipCode:
-              </label>
-              <input type="text" name="zip" id="zip" />
-            </fieldset>
-            <fieldset>
-                <legend>HOME DETAILS</legend>
-                <label for="beds">Bedrooms:
-              </label>
-              <input type="text" name="beds" id="beds" />
-              <label for="baths">Baths:
-              </label>
-              <input type="text" name="baths" id="baths" />
-              <label for="built">Year Built:
-              </label>
-              <input type="text" name="built" id="built" />
-              <label for="area">Area(sqft):
-                </label>
-              <input type="text" name="area" id="area" />
-                <label for="zillowId">Zillow ID:
-                </label>
-                <input type="text" name="zillowId" id = "zillowId" />
-            </fieldset>
+            <div class="row">
+                <fieldset class="col-sm-6">
+                    <legend>ADDRESS</legend>
+                    <label for="streetAdd">Street Address:
+                    </label>
+                    <textarea name="streetAdd" id="streetAdd" cols="30" rows="2"></textarea>
+                    
+                    <label for="city">City:
+                    </label>
+                    <input type="text" name="city" id="city" />
+                    <label for="state">State:
+                    </label>
+                    <input type="text" name="state" id="state" />
+                    <label for="zip">ZipCode:
+                    </label>
+                    <input type="text" name="zip" id="zip" />
+                </fieldset>
+                <fieldset class="col-sm-6">
+                    <legend>HOME DETAILS</legend>
+                    <label for="beds">Bedrooms:
+                    </label>
+                    <input type="text" name="beds" id="beds" />
+                    <label for="baths">Baths:
+                    </label>
+                    <input type="text" name="baths" id="baths" />
+                    <label for="built">Year Built:
+                    </label>
+                    <input type="text" name="built" id="built" />
+                    <label for="area">Area(sqft):
+                    </label>
+                    <input type="text" name="area" id="area" />
+                    <label for="zillowId">Zillow ID:
+                    </label>
+                    <input type="text" name="zillowId" id = "zillowId" />
+                </fieldset>
+            </div>  
         </form>
     </div> 
     </div><!--end Row -->
     <div class="row">
         <div class="col-sm-12">
-        <form action="" class="fm_userNotes" id="fm_userNotes">
+        <form action="#" class="fm_userNotes" id="fm_userNotes">
         <fieldset>
                 <legend>YOUR NOTES</legend>
                 <label for="offer">Your Offer Price:

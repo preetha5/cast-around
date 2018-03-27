@@ -24,8 +24,16 @@
     margin: 0 auto;
 }
 
+.features{
+    display: none;
+}
+
 @media screen and (min-width:768px){
-   
+
+    .features{
+        display: flex;
+    }
+    
     .btn_addNotes, .btn_deleteHome{
         font-size: .875rem;
     }
