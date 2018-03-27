@@ -134,7 +134,15 @@ input::placeholder , .fm_userNotes input::placeholder {
         font-size: 1.2rem;
     }
 
-    #save_search, #btn_saveNotes, #btn_goToDashboard {
+    /* #save_search, #btn_goToDashboard {
+        font-size: 1.4rem;
+    } */
+
+
+    #save_search, #btn_goToDashboard{
+        display: inline-block;
+        width: 39%;
+        margin: 0 5%;
         font-size: 1.4rem;
     }
 

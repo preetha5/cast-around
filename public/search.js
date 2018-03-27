@@ -20,21 +20,18 @@ var componentForm = {
   postal_code: 'short_name'
 };
 
-function getAddress(){
-    let address = $('getAddress').val();
-    alert(address);
-}
-function initAutocomplete() {
-  // Create the autocomplete object, restricting the search to geographical
-  // location types.
-  autocomplete = new google.maps.places.Autocomplete(
-      /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
-      {types: ['geocode']});
- console.log(autocomplete);
-  // When the user selects an address from the dropdown, populate the address
-  // fields in the form.
-  //autocomplete.addListener('place_changed', fillInAddress);
-}
+
+// function initAutocomplete() {
+//   // Create the autocomplete object, restricting the search to geographical
+//   // location types.
+//   autocomplete = new google.maps.places.Autocomplete(
+//       /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+//       {types: ['geocode']});
+//  console.log(autocomplete);
+//   // When the user selects an address from the dropdown, populate the address
+//   // fields in the form.
+//   //autocomplete.addListener('place_changed', fillInAddress);
+// }
 
 
 // Bias the autocomplete object to the user's geographical location,
@@ -55,6 +52,14 @@ function initAutocomplete() {
 //   }
 // }
 // END: Places Autocomplete feature using the Google Places API to help users fill in the information.
+
+//Redirect user to dashboard page on button click
+function goToDashboardHandler(){
+    $("#btn_goToDashboard").click((e) =>{
+        e.preventDefault();
+        location.href = "./dashboard.html";
+    });
+}
 
 //If user clicks on logout, destroy the local JWT and redirect to Landing page
 function logOutListener(){
@@ -248,6 +253,7 @@ function savetoDashboardListener(){
 }
 
 $(function(){
+    goToDashboardHandler();
     addressSearchListener();
     savetoDashboardListener();
     logOutListener();
